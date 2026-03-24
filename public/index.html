@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Hidden Pattern Blueprint | RESET Assessment</title>
+    <title>Your RESET Profile | Valentina Tudose</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
@@ -106,20 +106,21 @@
 <body>
 <div class="container">
     <header>
-        <div class="logo">Your Hidden Pattern Blueprint</div>
-        <div class="tagline">A RESET Assessment for navigating change with clarity and alignment</div>
+        <div class="logo">Your RESET Profile</div>
+        <div class="tagline">Discover the pattern running beneath your relationships, your work, and your sense of self</div>
     </header>
 
     <!-- Welcome Screen -->
     <div class="welcome-card" id="welcomeScreen">
-        <h1>Welcome to Your Hidden Pattern Blueprint</h1>
-        <p>Life's thresholds — motherhood, career shifts, loss, relocation, identity evolution — are transformative forces that often leave us navigating on autopilot.</p>
-        <p>This assessment will help you spot hidden patterns, understand what's blocking your evolution, and reveal your fastest pathway to realignment.</p>
+        <h1>Your RESET Profile</h1>
+        <p>Most people spend years working on their relationships — the communication, the patterns, the choices — without realising that the struggle isn't really about the relationship.</p>
+        <p>It's about the architecture built long before the relationship began. The beliefs formed in childhood about whether you are safe, worthy, and enough. The protection systems that learned to keep you small in order to keep you safe.</p>
+        <p>This assessment maps that architecture. In 10–15 minutes, it will show you the pattern running beneath your experiences — in love, in work, in how you relate to yourself — and where it needs to shift first for anything else to change.</p>
         <ul class="info-list">
-            <li>Takes approximately 10–15 minutes to complete</li>
-            <li>13 questions across key life dimensions</li>
-            <li>Receive your personalised profile immediately</li>
-            <li>Completely confidential</li>
+            <li>10–15 minutes to complete</li>
+            <li>13 questions across key dimensions of your experience</li>
+            <li>Your personalised RESET Profile delivered immediately</li>
+            <li>Completely confidential — your answers are never shared</li>
         </ul>
         <div class="start-form">
             <div class="form-group">
@@ -131,7 +132,7 @@
                 <input type="email" id="userEmail" placeholder="your.email@example.com" required>
             </div>
             <button class="btn btn-primary" onclick="startAssessment()" style="width: 100%; margin-top: 10px;">
-                Begin Your RESET Assessment <span>→</span>
+                Discover Your Pattern <span>→</span>
             </button>
         </div>
     </div>
@@ -152,12 +153,11 @@
 
 <script>
     // ============================================================
-    // CONFIGURATION
-    // API key is stored in Vercel environment variables — never in this file
-    // Mailchimp calls go via /api/subscribe (Vercel serverless function)
+    // CONFIGURATION — update these values if keys change
     // ============================================================
-    const MAILCHIMP_AUDIENCE_ID = 'cd6f17dc7e'; // safe to keep here — not a secret
-    const MAILCHIMP_DC = 'us8';
+    // API key handled server-side - do not add here
+    const MAILCHIMP_AUDIENCE_ID = 'cd6f17dc7e';
+    const MAILCHIMP_DC = 'us8'; // datacenter prefix from end of API key
 
     // Mailchimp tag names — must match exactly what you create in Mailchimp
     // Go to Audience → Tags → create these six tags before going live:
@@ -492,17 +492,18 @@
     // Mailchimp Integration
     // ============================================================
     async function subscribeToMailchimp(profile) {
-        const tags = [];
+        // Builds tags and calls the Vercel serverless function /api/subscribe
+        // The API key lives in Vercel environment variables — never here
+        // Google Sheets submission is handled separately by submitToGoogleSheets()
+        // to avoid double-writing
 
-        // Build tags from profile
+        const tags = [];
         const patternTag = PATTERN_TAGS[profile.dominantPattern];
         if (patternTag) tags.push(patternTag);
-
         if (profile.recommendations && profile.recommendations[0]) {
             const resetTag = RESET_TAGS[profile.recommendations[0].step];
             if (resetTag) tags.push(resetTag);
         }
-
         const readinessTag = READINESS_TAGS[profile.readinessLevel];
         if (readinessTag) tags.push(readinessTag);
         tags.push('assessment-completed');
@@ -511,8 +512,6 @@
         const firstName = nameParts[0] || '';
         const lastName = nameParts.slice(1).join(' ') || '';
 
-        // Call our Vercel serverless function — API key stays private on the server
-        // /api/subscribe is the Vercel function in api/subscribe.js
         try {
             const response = await fetch('/api/subscribe', {
                 method: 'POST',
@@ -532,7 +531,6 @@
                     }
                 })
             });
-
             const result = await response.json();
             console.log('Mailchimp result:', result);
             return result;
@@ -723,7 +721,7 @@
             <div class="completion-screen">
                 <div class="completion-icon">✓</div>
                 <h2>Your RESET Profile is Ready, ${userData.userName.split(' ')[0]}.</h2>
-                <p style="margin-bottom: 10px; color: var(--text-secondary);">Check your inbox — a deeper look at your pattern is on its way.</p>
+                <p style="margin-bottom: 10px; color: var(--text-secondary);">Download your profile below and book a session to go deeper.</p>
 
                 <div class="profile-card" style="background: linear-gradient(135deg, #1E4976 0%, #2E6BA8 100%); color: white !important; padding: 35px;">
                     <h3 style="color: white !important; margin-bottom: 20px;">The RESET Method™</h3>
@@ -778,7 +776,7 @@
                 <div class="profile-card">
                     <h3>Recommended RESET Focus</h3>
                     <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 20px;">Where to start for maximum transformation</p>
-                    ${profile.recommendations.map(rec => getResetRecommendation(rec.step)).join('')}
+                    ${getResetRecommendation(profile.recommendations[0].step)}
                 </div>
 
                 <!-- BOOK CTA -->
@@ -796,7 +794,7 @@
                 <div class="cta-box">
                     <h3>Ready to Begin Your RESET Journey?</h3>
                     <p>Book a free 45-minute Diagnostic Session to dive deeper into your pattern and understand exactly what becoming unstuck looks like for you.</p>
-                    <a href="https://live.vcita.com/site/happyeverafter/online-scheduling?service=0t3q2orey007vb7i" class="btn-white" target="_blank">Book Your Free Session</a>
+                    <a href="https://calendly.com/valentina-tudose/new-meeting" class="btn-white" target="_blank">Book Your Free Session</a>
                     <p style="margin-top: 15px; font-size: 0.9rem; opacity: 0.9;">Or reply to the email with your results to connect directly.</p>
                 </div>
             </div>`;
@@ -826,7 +824,7 @@
 
         doc.setFillColor(30, 73, 118); doc.rect(0, 0, 210, 50, 'F');
         doc.setTextColor(255, 255, 255); doc.setFontSize(24); doc.setFont('helvetica', 'bold');
-        doc.text('Your Hidden Pattern Blueprint', 105, 25, { align: 'center' });
+        doc.text('Your RESET Profile', 105, 25, { align: 'center' });
         doc.setFontSize(12); doc.text('Personalised Assessment Results', 105, 35, { align: 'center' });
         yPos = 60;
 
