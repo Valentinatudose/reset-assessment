@@ -753,6 +753,11 @@ function goBack() {
 
 // ══ SUBMIT & RESULTS ══════════════════════════════════════════
 async function submitAndShowResults() {
+    // Capture Q5 textarea in case it wasn't captured by goNext
+    const openTextEl = document.getElementById('openText');
+    if (openTextEl && !responses[5]) {
+        responses[5] = openTextEl.value || '';
+    }
     const pattern = patterns[detectedPattern];
 
     // Show results immediately
@@ -770,17 +775,24 @@ async function submitAndShowResults() {
 
     // 1. Submit to Google Sheets for data capture
     const sheetsPayload = {
-        type: 'assessment_v2',
+        type: 'sheets_only',
         timestamp: new Date().toISOString(),
         userName: userData.name,
         userEmail: userData.email,
+        primaryThreshold: 'assessment-v2',
         dominantPattern: pattern.name,
-        patternTag: detectedPattern,
-        q1Response: responses[1] !== undefined ? questions[0].options[responses[1]].text : '',
-        q2Response: responses[2] !== undefined ? questions[1].options[responses[2]].text : '',
-        q3Response: Array.isArray(responses[3]) ? responses[3].map(i => questions[2].options[i].text).join(', ') : '',
-        q4Response: responses[4] !== undefined ? questions[3].options[responses[4]].text : '',
-        q5Response: responses[5] || ''
+        copingStyle: responses[2] !== undefined ? questions[1].options[responses[2]].text : '',
+        emotionalSignature: '',
+        somaticPattern: responses[4] !== undefined ? questions[3].options[responses[4]].text : '',
+        readinessLevel: Array.isArray(responses[3]) ? responses[3].map(i => questions[2].options[i].text).join(', ') : '',
+        responses: JSON.stringify({
+            q1: responses[1] !== undefined ? questions[0].options[responses[1]].text : '',
+            q2: responses[2] !== undefined ? questions[1].options[responses[2]].text : '',
+            q3: Array.isArray(responses[3]) ? responses[3].map(i => questions[2].options[i].text).join(', ') : '',
+            q4: responses[4] !== undefined ? questions[3].options[responses[4]].text : '',
+            q5: responses[5] !== undefined ? responses[5] : ''
+        }),
+        profile: JSON.stringify({ dominantPattern: pattern.name, patternTag: detectedPattern })
     };
 
     fetch(GOOGLE_SCRIPT_URL, {
