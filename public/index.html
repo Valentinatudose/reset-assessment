@@ -752,10 +752,10 @@ function goBack() {
 }
 
 // ══ SUBMIT & RESULTS ══════════════════════════════════════════
-function submitAndShowResults() {
+async function submitAndShowResults() {
     const pattern = patterns[detectedPattern];
 
-    // Show results
+    // Show results immediately
     document.getElementById('assessmentScreen').style.display = 'none';
     document.getElementById('resultsScreen').style.display = 'block';
     document.getElementById('patternName').textContent = pattern.name;
@@ -764,8 +764,12 @@ function submitAndShowResults() {
     document.getElementById('patternOrigin').textContent = pattern.origin;
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
-    // Submit to Google Sheets + trigger Mailchimp email
-    const payload = {
+    const nameParts = userData.name.trim().split(' ');
+    const firstName = nameParts[0] || '';
+    const lastName = nameParts.slice(1).join(' ') || '';
+
+    // 1. Submit to Google Sheets for data capture
+    const sheetsPayload = {
         type: 'assessment_v2',
         timestamp: new Date().toISOString(),
         userName: userData.name,
@@ -783,8 +787,29 @@ function submitAndShowResults() {
         method: 'POST',
         mode: 'no-cors',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-    }).catch(err => console.log('Submission error:', err));
+        body: JSON.stringify(sheetsPayload)
+    }).catch(err => console.log('Sheets error:', err));
+
+    // 2. Subscribe to Mailchimp with pattern tag via Vercel API
+    try {
+        await fetch('/api/subscribe', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                email: userData.email,
+                firstName,
+                lastName,
+                tags: [detectedPattern, 'assessment-completed'],
+                mergeFields: {
+                    FNAME: firstName,
+                    LNAME: lastName,
+                    PATTERN: pattern.name
+                }
+            })
+        });
+    } catch (err) {
+        console.log('Mailchimp error:', err);
+    }
 }
 </script>
 </body>
