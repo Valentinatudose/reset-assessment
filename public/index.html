@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your RESET Profile | Valentina Tudose</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
@@ -69,9 +69,9 @@
         }
         .welcome-headline {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(2rem, 5vw, 2.8rem);
+            font-size: clamp(1.9rem, 5vw, 2.7rem);
             color: var(--navy);
-            line-height: 1.2;
+            line-height: 1.22;
             margin-bottom: 1.8rem;
             font-weight: 700;
             text-align: center;
@@ -79,20 +79,14 @@
         .welcome-body {
             font-size: 1.05rem;
             color: var(--text);
-            margin-bottom: 0.9rem;
+            margin-bottom: 1.1rem;
             line-height: 1.8;
-            text-align: center;
+            max-width: 560px;
+            margin-left: auto;
+            margin-right: auto;
         }
-        .welcome-body strong {
-            color: var(--navy);
-            font-weight: 600;
-        }
-        .gold-rule {
-            width: 60px;
-            height: 2px;
-            background: var(--gold);
-            margin: 2rem auto;
-        }
+        .welcome-body strong { color: var(--navy); font-weight: 600; }
+        .gold-rule { width: 60px; height: 2px; background: var(--gold); margin: 2rem auto; }
         .welcome-meta {
             display: flex;
             gap: 1.2rem 2rem;
@@ -101,340 +95,220 @@
             justify-content: center;
         }
         .meta-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.88rem;
-            color: var(--text-muted);
+            display: flex; align-items: center; gap: 0.5rem;
+            font-size: 0.88rem; color: var(--text-muted);
         }
-        .meta-dot {
-            width: 6px; height: 6px;
-            border-radius: 50%;
-            background: var(--gold);
-            flex-shrink: 0;
-        }
+        .meta-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
 
         /* ── FORM FIELDS ── */
-        .field-group { margin-bottom: 1.2rem; max-width: 480px; margin-left: auto; margin-right: auto; margin-bottom: 1.2rem; }
+        .field-group { max-width: 480px; margin: 0 auto 1.2rem; }
         .field-label {
-            display: block;
-            font-size: 0.85rem;
-            font-weight: 500;
-            color: var(--text);
-            margin-bottom: 0.5rem;
-            letter-spacing: 0.02em;
+            display: block; font-size: 0.85rem; font-weight: 500;
+            color: var(--text); margin-bottom: 0.5rem; letter-spacing: 0.02em;
         }
         .field-input {
-            width: 100%;
-            padding: 0.9rem 1.1rem;
-            border: 1.5px solid var(--border);
-            border-radius: 8px;
-            font-size: 1rem;
-            font-family: 'DM Sans', sans-serif;
-            color: var(--text);
-            background: var(--white);
-            transition: border-color 0.2s;
-            outline: none;
+            width: 100%; padding: 0.9rem 1.1rem;
+            border: 1.5px solid var(--border); border-radius: 8px;
+            font-size: 1rem; font-family: 'DM Sans', sans-serif;
+            color: var(--text); background: var(--white);
+            transition: border-color 0.2s; outline: none;
         }
         .field-input:focus { border-color: var(--navy-mid); }
 
         /* ── BUTTONS ── */
         .btn-primary {
-            display: inline-block;
-            background: var(--navy);
-            color: var(--white);
-            padding: 1rem 2.2rem;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            font-family: 'DM Sans', sans-serif;
-            cursor: pointer;
-            transition: background 0.2s, transform 0.1s;
-            letter-spacing: 0.02em;
+            display: inline-block; background: var(--navy); color: var(--white);
+            padding: 1rem 2.2rem; border: none; border-radius: 8px;
+            font-size: 1rem; font-weight: 600; font-family: 'DM Sans', sans-serif;
+            cursor: pointer; transition: background 0.2s, transform 0.1s; letter-spacing: 0.02em;
         }
         .btn-primary:hover { background: var(--navy-mid); transform: translateY(-1px); }
         .btn-gold {
-            display: inline-block;
-            background: var(--gold);
-            color: var(--navy);
-            padding: 1.1rem 2.5rem;
-            border: none;
-            border-radius: 8px;
-            font-size: 1.05rem;
-            font-weight: 700;
-            font-family: 'DM Sans', sans-serif;
-            cursor: pointer;
-            text-decoration: none;
-            transition: background 0.2s, transform 0.1s;
-            letter-spacing: 0.02em;
+            display: inline-block; background: var(--gold); color: var(--navy);
+            padding: 1.1rem 2.5rem; border: none; border-radius: 8px;
+            font-size: 1.05rem; font-weight: 700; font-family: 'DM Sans', sans-serif;
+            cursor: pointer; text-decoration: none;
+            transition: background 0.2s, transform 0.1s; letter-spacing: 0.02em;
         }
         .btn-gold:hover { background: var(--gold-light); transform: translateY(-1px); }
-        .btn-outline {
-            display: inline-block;
-            background: transparent;
-            color: var(--navy-mid);
-            padding: 0.7rem 1.5rem;
-            border: 1.5px solid var(--navy-mid);
-            border-radius: 8px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            font-family: 'DM Sans', sans-serif;
-            cursor: pointer;
-            text-decoration: none;
-            transition: all 0.2s;
-        }
-        .btn-outline:hover { background: var(--navy); color: var(--white); border-color: var(--navy); }
 
         /* ── ASSESSMENT ── */
         #assessmentScreen { display: none; }
-        .progress-wrap {
-            margin-bottom: 2.5rem;
-        }
+        .progress-wrap { margin-bottom: 2.5rem; }
         .progress-label {
-            font-size: 0.78rem;
-            color: var(--text-muted);
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            margin-bottom: 0.6rem;
-            display: flex;
-            justify-content: space-between;
+            font-size: 0.78rem; color: var(--text-muted); letter-spacing: 0.08em;
+            text-transform: uppercase; margin-bottom: 0.6rem;
+            display: flex; justify-content: space-between;
         }
-        .progress-bar-bg {
-            height: 3px;
-            background: var(--border);
-            border-radius: 2px;
-        }
-        .progress-bar-fill {
-            height: 3px;
-            background: var(--gold);
-            border-radius: 2px;
-            transition: width 0.4s ease;
-        }
+        .progress-bar-bg { height: 3px; background: var(--border); border-radius: 2px; }
+        .progress-bar-fill { height: 3px; background: var(--gold); border-radius: 2px; transition: width 0.4s ease; }
         .question-card {
-            background: var(--white);
-            border-radius: 12px;
-            padding: 2.5rem;
-            border: 1px solid var(--border);
-            margin-bottom: 1.5rem;
+            background: var(--white); border-radius: 12px; padding: 2.5rem;
+            border: 1px solid var(--border); margin-bottom: 1.5rem;
         }
         .question-text {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.35rem;
-            color: var(--navy);
-            line-height: 1.45;
-            margin-bottom: 1.8rem;
-            font-weight: 600;
+            font-family: 'Playfair Display', serif; font-size: 1.35rem; color: var(--navy);
+            line-height: 1.45; margin-bottom: 1.8rem; font-weight: 600;
         }
         .option-list { display: flex; flex-direction: column; gap: 0.75rem; }
         .option-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 0.9rem;
-            padding: 1rem 1.2rem;
-            border: 1.5px solid var(--border);
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.18s;
-            background: var(--cream);
+            display: flex; align-items: flex-start; gap: 0.9rem;
+            padding: 1rem 1.2rem; border: 1.5px solid var(--border); border-radius: 8px;
+            cursor: pointer; transition: all 0.18s; background: var(--cream);
         }
         .option-item:hover { border-color: var(--navy-mid); background: #f0eee8; }
-        .option-item.selected {
-            border-color: var(--navy);
-            background: #eef3f8;
-        }
-        .option-item.selected .option-indicator {
-            background: var(--navy);
-            border-color: var(--navy);
-        }
+        .option-item.selected { border-color: var(--navy); background: #eef3f8; }
+        .option-item.selected .option-indicator { background: var(--navy); border-color: var(--navy); }
         .option-item.selected .option-indicator::after { opacity: 1; }
         .option-indicator {
-            width: 20px; height: 20px;
-            border-radius: 50%;
-            border: 2px solid var(--border);
-            background: var(--white);
-            flex-shrink: 0;
-            margin-top: 1px;
-            position: relative;
-            transition: all 0.18s;
+            width: 20px; height: 20px; border-radius: 50%;
+            border: 2px solid var(--border); background: var(--white);
+            flex-shrink: 0; margin-top: 1px; position: relative; transition: all 0.18s;
         }
         .option-indicator::after {
-            content: '';
-            position: absolute;
-            top: 3px; left: 3px;
-            width: 10px; height: 10px;
-            border-radius: 50%;
-            background: var(--white);
-            opacity: 0;
-            transition: opacity 0.18s;
+            content: ''; position: absolute; top: 3px; left: 3px;
+            width: 10px; height: 10px; border-radius: 50%; background: var(--white);
+            opacity: 0; transition: opacity 0.18s;
         }
-        /* Checkbox style for multi-select */
-        .option-item.checkbox .option-indicator { border-radius: 4px; }
-        .option-item.checkbox.selected .option-indicator::after {
-            top: 2px; left: 2px;
-            width: 12px; height: 12px;
-            border-radius: 2px;
-        }
-        .option-text {
-            font-size: 0.97rem;
-            color: var(--text);
-            line-height: 1.5;
-        }
-        /* Open text */
-        .open-textarea {
-            width: 100%;
-            padding: 1rem 1.2rem;
-            border: 1.5px solid var(--border);
-            border-radius: 8px;
-            font-size: 0.97rem;
-            font-family: 'DM Sans', sans-serif;
-            color: var(--text);
-            background: var(--cream);
-            resize: vertical;
-            min-height: 130px;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-        .open-textarea:focus { border-color: var(--navy-mid); }
-        .open-textarea::placeholder { color: var(--text-muted); }
-
-        .question-nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 1.5rem;
-        }
+        .option-text { font-size: 0.97rem; color: var(--text); line-height: 1.5; }
+        .question-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem; }
         .btn-back {
-            background: none;
-            border: none;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            cursor: pointer;
-            font-family: 'DM Sans', sans-serif;
-            padding: 0.5rem 0;
-            text-decoration: underline;
+            background: none; border: none; color: var(--text-muted); font-size: 0.9rem;
+            cursor: pointer; font-family: 'DM Sans', sans-serif; padding: 0.5rem 0; text-decoration: underline;
         }
         .btn-back:hover { color: var(--text); }
 
         /* ── RESULTS ── */
         #resultsScreen { display: none; }
+        .email-notice {
+            background: #eef7f2; border: 1px solid #a8d5b8; border-radius: 8px;
+            padding: 1rem 1.5rem; font-size: 0.9rem; color: #2d6a4a;
+            margin-bottom: 1.5rem; text-align: center;
+        }
         .results-hero {
-            background: #091e35;
-            border-radius: 12px;
-            padding: 2.5rem;
-            margin-bottom: 1.5rem;
-            text-align: center;
+            background: #091e35; border-radius: 12px; padding: 2.6rem 2.5rem;
+            margin-bottom: 1.5rem; text-align: center;
         }
         .results-eyebrow {
-            font-size: 0.75rem;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-            color: var(--gold);
-            margin-bottom: 0.8rem;
+            font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase;
+            color: var(--gold); margin-bottom: 0.8rem;
         }
         .results-pattern-name {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(1.8rem, 4vw, 2.4rem);
-            color: var(--white);
-            line-height: 1.2;
-            margin-bottom: 1.2rem;
+            font-family: 'Playfair Display', serif; font-size: clamp(1.7rem, 4vw, 2.3rem);
+            color: var(--white); line-height: 1.18; margin-bottom: 1.1rem; font-weight: 700;
         }
-        .results-description {
-            font-size: 1.02rem;
-            color: rgba(255,255,255,0.85);
-            line-height: 1.75;
-            max-width: 560px;
-            margin: 0 auto;
+        .results-headline {
+            font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400;
+            font-size: clamp(1.05rem, 2.4vw, 1.25rem); color: rgba(255,255,255,0.9);
+            line-height: 1.6; max-width: 560px; margin: 0 auto;
         }
+        .results-secondary {
+            margin-top: 1.4rem; padding-top: 1.2rem; border-top: 1px solid rgba(201,160,97,0.3);
+            font-size: 0.9rem; color: rgba(255,255,255,0.75); max-width: 520px; margin-left: auto; margin-right: auto;
+        }
+        .results-secondary strong { color: var(--gold); font-weight: 600; }
         .results-card {
-            background: var(--white);
-            border-radius: 12px;
-            padding: 2rem 2.5rem;
-            border: 1px solid var(--border);
-            margin-bottom: 1.2rem;
+            background: var(--white); border-radius: 12px; padding: 2rem 2.5rem;
+            border: 1px solid var(--border); margin-bottom: 1.2rem;
         }
         .results-card-label {
-            font-size: 0.72rem;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: var(--gold);
-            font-weight: 600;
-            margin-bottom: 0.6rem;
+            font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+            color: var(--gold); font-weight: 600; margin-bottom: 0.9rem;
         }
-        .results-card-body {
-            font-size: 0.97rem;
-            color: var(--text);
-            line-height: 1.7;
-        }
-        .book-cta-card {
-            background: var(--cream);
-            border: 1.5px solid var(--gold);
-            border-radius: 12px;
-            padding: 2rem 2.5rem;
-            margin-bottom: 1.2rem;
-            text-align: center;
-        }
-        .book-cta-eyebrow {
-            font-size: 0.72rem;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: var(--gold);
-            font-weight: 600;
-            margin-bottom: 0.8rem;
-        }
-        .book-cta-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
-            color: var(--navy);
-            margin-bottom: 0.8rem;
-            font-style: italic;
-        }
-        .book-cta-body {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            line-height: 1.7;
-            margin-bottom: 1.5rem;
-        }
-        .session-cta {
-            text-align: center;
-            padding: 1rem;
-        }
-        .session-cta a {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            text-decoration: underline;
-        }
-        .session-cta a:hover { color: var(--navy); }
+        .results-card-body p { font-size: 0.99rem; color: var(--text); line-height: 1.8; margin-bottom: 1rem; }
+        .results-card-body p:last-child { margin-bottom: 0; }
 
-        /* ── EMAIL SENT NOTICE ── */
-        .email-notice {
-            background: #eef7f2;
-            border: 1px solid #a8d5b8;
-            border-radius: 8px;
-            padding: 1rem 1.5rem;
-            font-size: 0.9rem;
-            color: #2d6a4a;
-            margin-bottom: 1.5rem;
-            text-align: center;
+        /* ── DECLARATION CARD (signature element) ── */
+        .declaration-section { margin: 1.6rem 0 1.2rem; }
+        .declaration-intro {
+            text-align: center; font-size: 0.72rem; letter-spacing: 0.12em;
+            text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 1rem;
         }
+        .declaration-card {
+            position: relative; background: linear-gradient(160deg, #0c2742 0%, #091e35 70%);
+            border-radius: 14px; padding: 3rem 2.6rem; overflow: hidden;
+            border: 1px solid rgba(201,160,97,0.35);
+        }
+        .declaration-card::before {
+            content: ''; position: absolute; inset: 14px; border: 1px solid rgba(201,160,97,0.25);
+            border-radius: 8px; pointer-events: none;
+        }
+        .dc-line1 {
+            font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400;
+            font-size: clamp(1.15rem, 3vw, 1.5rem); color: var(--cream);
+            line-height: 1.55; text-align: center; position: relative;
+        }
+        .dc-divider { width: 46px; height: 1px; background: var(--gold); margin: 1.6rem auto; opacity: 0.7; }
+        .dc-line2 {
+            font-family: 'DM Sans', sans-serif; font-weight: 600;
+            font-size: clamp(1rem, 2.4vw, 1.18rem); color: var(--white);
+            line-height: 1.6; text-align: center; position: relative;
+        }
+        .dc-sign {
+            margin-top: 2rem; text-align: center; position: relative;
+            font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase;
+            color: var(--gold);
+        }
+        .dc-sign .dc-url { display: block; margin-top: 0.35rem; color: rgba(255,255,255,0.55); letter-spacing: 0.1em; }
+
+        .share-controls { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; margin-top: 1.4rem; }
+        .btn-share {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: var(--gold); color: var(--navy); padding: 0.9rem 1.8rem;
+            border: none; border-radius: 8px; font-size: 0.95rem; font-weight: 700;
+            font-family: 'DM Sans', sans-serif; cursor: pointer; transition: background 0.2s, transform 0.1s;
+        }
+        .btn-share:hover { background: var(--gold-light); transform: translateY(-1px); }
+        .btn-share-ghost {
+            display: inline-flex; align-items: center; gap: 0.5rem; background: transparent;
+            color: var(--navy); padding: 0.9rem 1.6rem; border: 1.5px solid var(--navy);
+            border-radius: 8px; font-size: 0.95rem; font-weight: 600;
+            font-family: 'DM Sans', sans-serif; cursor: pointer; transition: all 0.2s;
+        }
+        .btn-share-ghost:hover { background: var(--navy); color: var(--white); }
+        .share-status { text-align: center; font-size: 0.82rem; color: var(--text-muted); margin-top: 0.8rem; min-height: 1.1rem; }
+
+        .misunderstood-note {
+            background: var(--cream); border-left: 3px solid var(--gold); border-radius: 6px;
+            padding: 1.3rem 1.6rem; margin-top: 1.2rem; font-size: 0.92rem;
+            color: var(--text-muted); line-height: 1.75; font-style: italic;
+        }
+
+        /* ── NEXT STEP ── */
+        .nextstep-card {
+            background: var(--cream); border: 1.5px solid var(--gold); border-radius: 12px;
+            padding: 2rem 2.5rem; margin: 1.6rem 0 1.2rem; text-align: center;
+        }
+        .nextstep-eyebrow {
+            font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+            color: var(--gold); font-weight: 600; margin-bottom: 0.8rem;
+        }
+        .nextstep-title {
+            font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--navy);
+            margin-bottom: 0.8rem; font-style: italic;
+        }
+        .nextstep-body { font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 1.6rem; max-width: 520px; margin-left: auto; margin-right: auto; }
+        .nextstep-cta { text-align: center; margin-top: 0.8rem; }
+        .nextstep-cta a.discovery {
+            display: inline-block; margin-top: 1.1rem; font-size: 0.9rem;
+            color: var(--text-muted); text-decoration: underline;
+        }
+        .nextstep-cta a.discovery:hover { color: var(--navy); }
 
         /* ── FOOTER ── */
         .site-footer {
-            text-align: center;
-            padding: 2rem;
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            border-top: 1px solid var(--border);
-            margin-top: 3rem;
+            text-align: center; padding: 2rem; font-size: 0.8rem; color: var(--text-muted);
+            border-top: 1px solid var(--border); margin-top: 3rem;
         }
         .site-footer a { color: var(--gold); text-decoration: none; }
 
         @media (max-width: 600px) {
             .container { padding: 2rem 1rem 4rem; }
             .question-card { padding: 1.5rem; }
-            .results-hero { padding: 1.8rem 1.5rem; }
+            .results-hero { padding: 2rem 1.4rem; }
             .results-card { padding: 1.5rem; }
-            .book-cta-card { padding: 1.5rem; }
+            .declaration-card { padding: 2.2rem 1.5rem; }
+            .nextstep-card { padding: 1.6rem 1.4rem; }
             .welcome-meta { gap: 1rem; }
         }
     </style>
@@ -448,18 +322,19 @@
 
 <div class="container">
 
-    <!-- ══ WELCOME SCREEN ══════════════════════════════════════ -->
+    <!-- ══ WELCOME SCREEN ══ -->
     <div id="welcomeScreen">
         <div class="welcome-eyebrow">Your RESET Profile</div>
-        <h1 class="welcome-headline">The reason you struggle<br>in your relationships<br>is not the same as<br>everyone else's.</h1>
-        <p class="welcome-body">It was born from a particular moment. A wound. A specific need for protection that made complete sense at the time — and has been running your life ever since.</p>
-        <p class="welcome-body">This assessment shows you exactly what that means for you.</p>
+        <h1 class="welcome-headline">You have probably been called<br>too much, not enough,<br>or difficult to understand.</h1>
+        <p class="welcome-body">By partners. By friends. By family. By people who loved you and still couldn&rsquo;t quite reach you.</p>
+        <p class="welcome-body">This assessment won&rsquo;t tell you what&rsquo;s wrong with you. It will tell you what you&rsquo;ve been protecting, why you&rsquo;ve been protecting it &mdash; and give you the language to tell the people in your life how to actually love you.</p>
+        <p class="welcome-body"><strong>Eight minutes. Five patterns. One result that might explain more about your relationships than anything else you&rsquo;ve ever read about yourself.</strong></p>
         <div class="gold-rule"></div>
         <div class="welcome-meta">
-            <div class="meta-item"><div class="meta-dot"></div> Five questions</div>
-            <div class="meta-item"><div class="meta-dot"></div> Three minutes</div>
+            <div class="meta-item"><div class="meta-dot"></div> Ten questions</div>
+            <div class="meta-item"><div class="meta-dot"></div> Around eight minutes</div>
             <div class="meta-item"><div class="meta-dot"></div> Your pattern identified immediately</div>
-            <div class="meta-item"><div class="meta-dot"></div> A personal letter to follow</div>
+            <div class="meta-item"><div class="meta-dot"></div> A letter to follow</div>
         </div>
         <div class="field-group">
             <label class="field-label" for="userName">Your first name</label>
@@ -470,180 +345,305 @@
             <input class="field-input" type="email" id="userEmail" placeholder="you@example.com" autocomplete="email">
         </div>
         <br>
-        <div style="text-align:center;"><button class="btn-primary" onclick="startAssessment()">Discover Your Pattern →</button>
-        <p style="margin-top:1rem; font-size:0.8rem; color:var(--text-muted);">Completely confidential. Your answers are never shared.</p></div>
+        <div style="text-align:center;">
+            <button class="btn-primary" onclick="startAssessment()">Discover Your Pattern &rarr;</button>
+            <p style="margin-top:1rem; font-size:0.8rem; color:var(--text-muted);">Completely confidential. Your answers are never shared.</p>
+        </div>
     </div>
 
-    <!-- ══ ASSESSMENT SCREEN ═══════════════════════════════════ -->
+    <!-- ══ ASSESSMENT SCREEN ══ -->
     <div id="assessmentScreen">
         <div class="progress-wrap">
             <div class="progress-label">
-                <span id="progressText">Question 1 of 5</span>
-                <span id="progressPct">20%</span>
+                <span id="progressText">Question 1 of 10</span>
+                <span id="progressPct">10%</span>
             </div>
-            <div class="progress-bar-bg">
-                <div class="progress-bar-fill" id="progressFill" style="width:20%"></div>
-            </div>
+            <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressFill" style="width:10%"></div></div>
         </div>
         <div id="questionContainer"></div>
         <div class="question-nav">
-            <button class="btn-back" id="backBtn" onclick="goBack()" style="visibility:hidden">← Back</button>
-            <button class="btn-primary" id="nextBtn" onclick="goNext()">Next →</button>
+            <button class="btn-back" id="backBtn" onclick="goBack()" style="visibility:hidden">&larr; Back</button>
+            <button class="btn-primary" id="nextBtn" onclick="goNext()">Next &rarr;</button>
         </div>
     </div>
 
-    <!-- ══ RESULTS SCREEN ══════════════════════════════════════ -->
+    <!-- ══ RESULTS SCREEN ══ -->
     <div id="resultsScreen">
         <div class="email-notice" id="emailNotice">
-            ✓ A first letter from Valentina is on its way to you — usually within the hour.
+            &#10003; A first letter from Valentina is on its way to you &mdash; usually within the hour.
         </div>
         <div class="results-hero">
-            <div class="results-eyebrow">Your Core Pattern</div>
-            <div class="results-pattern-name" id="patternName">—</div>
-            <div class="results-description" id="patternDescription">—</div>
+            <div class="results-eyebrow">Your Dominant Pattern</div>
+            <div class="results-pattern-name" id="patternName">&mdash;</div>
+            <div class="results-headline" id="patternHeadline">&mdash;</div>
+            <div class="results-secondary" id="patternSecondary" style="display:none;"></div>
         </div>
+
         <div class="results-card">
-            <div class="results-card-label">What this means for you</div>
-            <div class="results-card-body" id="patternMeaning">—</div>
+            <div class="results-card-label">The Mirror</div>
+            <div class="results-card-body" id="patternMirror"></div>
         </div>
+
         <div class="results-card">
-            <div class="results-card-label">Where it likely began</div>
-            <div class="results-card-body" id="patternOrigin">—</div>
+            <div class="results-card-label">The Reframe</div>
+            <div class="results-card-body" id="patternReframe"></div>
         </div>
-        <div class="book-cta-card">
-            <div class="book-cta-eyebrow">Want to understand this more deeply?</div>
-            <div class="book-cta-title">Your Knight in Shining Armour</div>
-            <div class="book-cta-body">The book walks through exactly how these patterns are built — the wound, the protection programme, and what it actually takes to change them at the level where they live. Written from 12 years and over 1,000 clients. From $3.99.</div>
-            <a href="https://www.amazon.com/dp/B0GSQ6VSMF" target="_blank" class="btn-gold">Get the book on Amazon →</a>
+
+        <!-- Declaration Card -->
+        <div class="declaration-section">
+            <div class="declaration-intro">Your Declaration &mdash; yours to share</div>
+            <div class="declaration-card" id="declarationCard">
+                <div class="dc-line1" id="dcLine1"></div>
+                <div class="dc-divider"></div>
+                <div class="dc-line2" id="dcLine2"></div>
+                <div class="dc-sign">Valentina Tudose<span class="dc-url">reset.happyeverafter.asia</span></div>
+            </div>
+            <div class="share-controls">
+                <button class="btn-share" onclick="shareCard()">Share my declaration</button>
+                <button class="btn-share-ghost" onclick="copyCaption()">Copy caption</button>
+            </div>
+            <div class="share-status" id="shareStatus"></div>
+            <div class="misunderstood-note" id="misunderstoodNote"></div>
         </div>
-        <div class="session-cta">
-            <a href="https://calendly.com/valentina-tudose/new-meeting" target="_blank">Or book a free 45-minute diagnostic session to go deeper →</a>
+
+        <!-- Next Step -->
+        <div class="nextstep-card">
+            <div class="nextstep-eyebrow">Your Next Step</div>
+            <div class="nextstep-title">Your Knight in Shining Armour</div>
+            <div class="nextstep-body" id="nextStepBody"></div>
+            <div class="nextstep-cta">
+                <a class="btn-gold" id="bookLink" href="#" target="_blank" rel="noopener">Get the book on Amazon &rarr;</a>
+                <a class="discovery" id="discoveryLink" href="#" target="_blank" rel="noopener">Or book a free discovery call to go deeper &rarr;</a>
+            </div>
         </div>
     </div>
 
 </div>
 
 <footer class="site-footer">
-    <a href="https://happyeverafter.asia">happyeverafter.asia</a> &nbsp;·&nbsp; Valentina Tudose &nbsp;·&nbsp; RESET Method™
+    <a href="https://happyeverafter.asia">happyeverafter.asia</a> &nbsp;&middot;&nbsp; Valentina Tudose &nbsp;&middot;&nbsp; RESET Method&trade;
 </footer>
 
-<script>
-// ══ CONFIG ═══════════════════════════════════════════════════
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzsapU-uLakNqNCrryxEALmUPyNHqCr2rFreuhWIdxu-ij1V8VsY7yDxBiSBxFhhADn/exec';
+<canvas id="cardCanvas" width="1080" height="1350" style="display:none;"></canvas>
 
-// ══ QUESTIONS ════════════════════════════════════════════════
+<script>
+// ══ CONFIG ══
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzsapU-uLakNqNCrryxEALmUPyNHqCr2rFreuhWIdxu-ij1V8VsY7yDxBiSBxFhhADn/exec';
+const ASSESSMENT_URL = 'reset.happyeverafter.asia';
+const AMAZON_URL = 'https://www.amazon.com/dp/B0GSQ6VSMF';
+const CALENDLY_URL = 'https://calendly.com/valentina-tudose/new-meeting';
+const SHARE_CAPTION = 'Just took an assessment that finally explained something I\u2019ve never been able to put into words. Link in Valentina\u2019s bio if you want yours \u2014 reset.happyeverafter.asia';
+
+// ══ ARCHETYPE KEYS ══ DIS=Disconnected, OVG=Over-Giver, CON=Controller, PLE=People-Pleaser, SPL=Splitter
+
+// ══ QUESTIONS (10) ══ each option scores +1 toward one archetype (.a)
 const questions = [
     {
-        id: 1,
-        type: 'radio',
-        text: 'Which of these sounds most like you?',
+        text: 'When someone close asks what you&rsquo;re really feeling, your instinct is to&hellip;',
         options: [
-            { text: 'I give a lot without asking for much in return — and I\'m exhausted by it.', pattern: 'pattern-prove-worth' },
-            { text: 'I have been feeling stuck for a long time and have no idea how to change it.', pattern: 'pattern-holding-old' },
-            { text: 'I lose myself in relationships. I don\'t know who I am outside of them.', pattern: 'pattern-feeling-lost' },
-            { text: 'I can see the problem clearly. I just don\'t know what to do about it.', pattern: 'pattern-resisting-change' },
-            { text: 'I am scared to show my real self, so I have pulled back and stopped letting people in.', pattern: 'pattern-disconnected' },
-            { text: 'Something is shifting in me. I want to make sure I do this right.', pattern: 'pattern-embracing-new' }
+            { a: 'DIS', text: 'Give them a lighter version than the truth &mdash; the whole of it feels like too much to hand over.' },
+            { a: 'OVG', text: 'Turn it back to them &mdash; you&rsquo;d rather ask how they are.' },
+            { a: 'CON', text: 'Answer carefully. You don&rsquo;t reveal that part of yourself quickly.' },
+            { a: 'PLE', text: 'Say whatever keeps things smooth between you.' },
+            { a: 'SPL', text: 'Realise you&rsquo;re not even sure &mdash; it depends who&rsquo;s asking, and how close they already are.' }
         ]
     },
     {
-        id: 2,
-        type: 'radio',
-        text: 'When a relationship disappoints you, what do you do first?',
+        text: 'In your closest relationships, the feeling you return to most often is&hellip;',
         options: [
-            { text: 'Try harder — I ask myself what I could have done differently.' },
-            { text: 'Pull back — I knew better than to trust this.' },
-            { text: 'Blame myself — it\'s probably something I did.' },
-            { text: 'Analyse it — I need to understand exactly what happened.' },
-            { text: 'Go numb — I stop feeling it and keep moving.' },
-            { text: 'Talk it through — I process out loud with someone I trust.' }
+            { a: 'OVG', text: 'Depended on &mdash; and quietly drained by it.' },
+            { a: 'SPL', text: 'That something is there but incomplete, like a piece is always missing.' },
+            { a: 'DIS', text: 'Alone, even when you&rsquo;re right there with them.' },
+            { a: 'PLE', text: 'Like you&rsquo;ve disappeared into what everyone else needs.' },
+            { a: 'CON', text: 'Braced &mdash; half-waiting for the proof that you were right to keep your guard up.' }
         ]
     },
     {
-        id: 3,
-        type: 'checkbox',
-        text: 'Which of these have you already tried? (Select all that apply)',
+        text: 'When a relationship starts to feel genuinely close and available, you tend to&hellip;',
         options: [
-            { text: 'Therapy or counselling' },
-            { text: 'Self-help books' },
-            { text: 'Coaching' },
-            { text: 'Meditation or mindfulness' },
-            { text: 'Journalling' },
-            { text: 'I\'ve tried most things — and I\'m still stuck.' }
+            { a: 'SPL', text: 'Notice your interest cool, or find something that bothers you.' },
+            { a: 'DIS', text: 'Pull back without quite meaning to.' },
+            { a: 'CON', text: 'Slow it down and watch for the catch.' },
+            { a: 'OVG', text: 'Pour even more in, to make sure you&rsquo;re needed.' },
+            { a: 'PLE', text: 'Go along with whatever keeps them close, even past your own comfort.' }
         ]
     },
     {
-        id: 4,
-        type: 'radio',
-        text: 'When you trace this pattern back — where does it start?',
+        text: 'Asking someone for something you need feels&hellip;',
         options: [
-            { text: 'A specific relationship that changed everything.' },
-            { text: 'Childhood — it goes back further than I can clearly see.' },
-            { text: 'I\'m not sure — it feels like it\'s always been there.' },
-            { text: 'Something happened recently that brought it to the surface.' }
+            { a: 'CON', text: 'Unnecessary. You&rsquo;d rather handle it yourself.' },
+            { a: 'OVG', text: 'Selfish, like you&rsquo;re taking more than your share.' },
+            { a: 'PLE', text: 'Risky, like it could cost you the connection.' },
+            { a: 'DIS', text: 'Exposing &mdash; so you usually don&rsquo;t.' },
+            { a: 'SPL', text: 'Complicated. You can want it and distrust it at the same time.' }
         ]
     },
     {
-        id: 5,
-        type: 'textarea',
-        text: 'If this pattern stopped running your life — what would be different?',
-        placeholder: 'Describe what becomes possible. How would you feel? What would you be doing differently?'
+        text: 'People who have struggled to love you have most often called you&hellip;',
+        options: [
+            { a: 'DIS', text: 'Cold, or hard to reach.' },
+            { a: 'OVG', text: 'Too much, or needy &mdash; usually right after you finally asked for something.' },
+            { a: 'CON', text: 'Guarded, or independent to a fault.' },
+            { a: 'PLE', text: 'Easygoing &mdash; and then, confusingly, dramatic when you finally spoke up.' },
+            { a: 'SPL', text: 'Hard to read, or never quite satisfied.' }
+        ]
+    },
+    {
+        text: 'When a relationship disappoints you, your first move is to&hellip;',
+        options: [
+            { a: 'OVG', text: 'Ask what you could have done differently.' },
+            { a: 'CON', text: 'Pull back. You knew better than to trust it fully.' },
+            { a: 'PLE', text: 'Assume it&rsquo;s something you did, and try to fix it.' },
+            { a: 'DIS', text: 'Go quiet and stop letting it reach you.' },
+            { a: 'SPL', text: 'Wonder if you picked the wrong kind of person again.' }
+        ]
+    },
+    {
+        text: 'The role you most often end up playing is&hellip;',
+        options: [
+            { a: 'OVG', text: 'The reliable one &mdash; the one who holds it all together.' },
+            { a: 'PLE', text: 'The accommodating one &mdash; the one who&rsquo;s easy to be around.' },
+            { a: 'CON', text: 'The capable one &mdash; the one who needs no one.' },
+            { a: 'DIS', text: 'The private one &mdash; present, but a little behind glass.' },
+            { a: 'SPL', text: 'The one who&rsquo;s always half-in and half-out.' }
+        ]
+    },
+    {
+        text: 'After you say no to someone you care about, you usually feel&hellip;',
+        options: [
+            { a: 'PLE', text: 'Guilty, like you have to make up for it.' },
+            { a: 'CON', text: 'Fine. Saying no is one of the few things that comes easily.' },
+            { a: 'OVG', text: 'Anxious that you&rsquo;ve let them down.' },
+            { a: 'DIS', text: 'Relieved &mdash; but you&rsquo;d rather not have had the conversation at all.' },
+            { a: 'SPL', text: 'Torn, like you owe them and resent them at once.' }
+        ]
+    },
+    {
+        text: 'When you trace your relationships back, the pattern that repeats is&hellip;',
+        options: [
+            { a: 'SPL', text: 'Choosing people who are exciting but unavailable, or safe but flat.' },
+            { a: 'OVG', text: 'Giving everything to people who were very good at receiving.' },
+            { a: 'CON', text: 'Keeping people at a distance that feels safe.' },
+            { a: 'DIS', text: 'Being there in body but never fully arriving.' },
+            { a: 'PLE', text: 'Becoming whatever the other person needed you to be.' }
+        ]
+    },
+    {
+        text: 'The thing you most quietly long for is&hellip;',
+        options: [
+            { a: 'SPL', text: 'To stop having to choose between safe and alive.' },
+            { a: 'DIS', text: 'To be fully known without it costing you.' },
+            { a: 'OVG', text: 'To be held the way you hold everyone else.' },
+            { a: 'CON', text: 'To let someone in without bracing for the loss.' },
+            { a: 'PLE', text: 'To be wanted for what you actually want, not for how easy you are.' }
+        ]
     }
 ];
 
-// ══ PATTERN DATA ══════════════════════════════════════════════
-const patterns = {
-    'pattern-prove-worth': {
+// ══ ARCHETYPE CONTENT ══
+const archetypes = {
+    DIS: {
+        name: 'The Disconnected',
+        tag: 'archetype-disconnected',
+        headline: 'You&rsquo;re not cold. You&rsquo;re not distant. You feel everything &mdash; and somewhere along the way, that started to feel dangerous.',
+        mirror: [
+            'You have probably been called cold. Unavailable. Hard to reach. People who love you have complained that you disappear, that they can&rsquo;t find you, that you&rsquo;re there but not really there.',
+            'What they didn&rsquo;t know &mdash; and what you may not have had words for until now &mdash; is that you disappear because you feel too much, not too little.',
+            'Somewhere early in your life, being fully present stopped feeling safe. Maybe your feelings were met with overwhelm, irritation, or silence. Maybe you learned that needing was a burden and feeling was a weakness. So you found a way to be in the room while keeping the most sensitive parts of yourself somewhere nobody could reach them. That wasn&rsquo;t a flaw. That was a five-year-old&rsquo;s most intelligent solution to a problem she didn&rsquo;t ask to have.',
+            'The cost in adult life has been this: the relationships that should feel closest often feel like they&rsquo;re happening through glass. You love people and still feel alone with them. You want to be known and simultaneously work very hard not to be.',
+            'You are not broken. You are not cold. You are someone whose emotional depth was never met with the safety it needed to come fully forward. That changes now.'
+        ],
+        reframe: [
+            'The Disconnected pattern is not about an inability to feel. It is about an inability to feel safely. The Queen version of you reclaims this: full presence, depth as a gift rather than a liability, intimacy extended on your own terms to the people who have earned it.',
+            'You were never too much. You were never too little. You were protecting something worth protecting. Now you get to decide who is safe enough to see it.'
+        ],
+        dcLine1: 'I go quiet when I&rsquo;m overwhelmed &mdash; not because I don&rsquo;t care, but because I feel everything more than I show.',
+        dcLine2: 'If you want to love me well &mdash; as a partner, a friend, anyone who wants to stay &mdash; stay close when I go silent. I&rsquo;m not leaving. I&rsquo;m processing.',
+        misunderstood: 'You have been called cold when you were overwhelmed. Distant when you were protecting the most feeling part of yourself. Share this so the people in your life finally understand what your silence has always meant. It was never indifference. It was depth looking for somewhere safe to land.',
+        nextStep: 'The Disconnected pattern runs deep and it shifts with the right support. Your Knight in Shining Armour has an entire chapter on how this protection programme was built and what it takes to dismantle it &mdash; safely, on your terms.'
+    },
+    OVG: {
         name: 'The Over-Giver',
-        mailchimpTag: 'pattern-prove-worth',
-        description: 'You give generously, reliably, and often without being asked. The people in your life lean on you — and you let them, because somewhere underneath it all, you believe that being needed is the closest thing to being loved.',
-        meaning: 'Your exhaustion is not a time management problem. It is what happens when giving becomes the strategy for earning your place. You learned early that needs were too much — that love was something you had to work for, not something you simply deserved. The giving has been protecting you ever since.',
-        origin: 'This pattern almost always begins in childhood, in a family system where your needs felt like too much, or where love was conditional on being easy, useful, or good. You found a way to be indispensable. It worked. It is also the reason you are tired.'
+        tag: 'archetype-over-giver',
+        headline: 'You love without limits. You always have. The problem was never how much you gave &mdash; it was who you were giving it to.',
+        mirror: [
+            'You are the one who shows up. Always. Without being asked. You remember what people need before they know they need it. You hold things together &mdash; relationships, families, friendships, teams &mdash; often invisibly, often without acknowledgment, always at a cost to yourself that you rarely name out loud.',
+            'You have probably been called selfless, generous, the strong one. And you have probably felt, in your most honest moments, that those are beautiful words for something that is slowly exhausting you.',
+            'Because here is what nobody sees: underneath the giving is a belief, installed so early you can&rsquo;t remember a time without it, that your needs are too much. That love is something you earn, not something you receive. That the only safe version of connection is the one where you are indispensable &mdash; because if you are needed, you cannot be abandoned. So you gave. And you gave. And you attracted people who were very good at receiving.',
+            'You were never too giving. You were giving in the wrong direction. You are not a martyr. You are not naive. You are someone with an extraordinary capacity for love who was never shown how to aim some of it at yourself.'
+        ],
+        reframe: [
+            'The Over-Giver pattern does not mean you chose wrong or loved wrong. It means you loved with full capacity from a half-empty place. The Queen version of you receives as fluently as she gives. She loves without limits and includes herself in that love. She is not less generous &mdash; she is finally generous in all directions.',
+            'You are not too much. You just spent too long around people who mistook your limitless giving for an absence of standards. That ends here.'
+        ],
+        dcLine1: 'I love without limits and I show up completely &mdash; I just spent too long doing it for people who mistook that for convenience.',
+        dcLine2: 'If you want to love me well &mdash; partner, friend, family, anyone who wants to stay &mdash; match my energy. I&rsquo;m not hard to keep. I just finally know my worth.',
+        misunderstood: 'You have been called needy for finally asking. Selfish for finally taking. Too sensitive for noticing the imbalance everyone else pretended wasn&rsquo;t there. Share this so every person in your life who has benefited from your endless giving understands: this is not a request. This is a standard.',
+        nextStep: 'The Over-Giver pattern is one of the most common and most stubborn because it wears the disguise of virtue. Your Knight in Shining Armour breaks down exactly how this pattern was built, what it costs, and what becomes possible when you finally start receiving as fluently as you give.'
     },
-    'pattern-holding-old': {
-        name: 'Holding Onto the Old',
-        mailchimpTag: 'pattern-holding-old',
-        description: 'You know something needs to change. You have known for a while. But every time you get close to actually letting go, something pulls you back — and you find yourself adjusting to a situation that was never quite right for you.',
-        meaning: 'Staying is not weakness. It is a protection programme that learned, at some point, that leaving means loss — and that loss is the thing you cannot survive. So you make yourself fit. You adjust. You find ways to manage what you cannot change. The problem is that it is costing you more than you know.',
-        origin: 'This pattern often begins with an early experience of abandonment, loss, or instability — something that taught you that holding on was safer than letting go. The person you became in response was someone who stays. It made sense then. The question now is whether it still does.'
+    CON: {
+        name: 'The Controller',
+        tag: 'archetype-controller',
+        headline: 'You are not controlling. You are someone who once trusted completely, got hurt completely, and made a very intelligent decision never to be that exposed again.',
+        mirror: [
+            'You have been called cold. Guarded. Independent to a fault. The woman who doesn&rsquo;t need anyone. The one who has everything under control and somehow always looks like she is doing fine. What nobody sees is how much energy it takes to maintain that. The constant vigilance. The way you are already three steps ahead in every relationship, already mapping the exit, already preparing for the loss before it has arrived.',
+            'You are not cold. You are someone who paid attention. Who learned, at a formative moment, that depending on someone fully meant being at the mercy of a person who might not stay, might not be safe. And so you made yourself invulnerable. You became the person who needs no one. This is one of the most sophisticated protection programmes a human being can build.',
+            'The cost has been intimacy. Not the ability to feel it &mdash; you feel it more than almost anyone. The ability to let it land.'
+        ],
+        reframe: [
+            'The Controller pattern has nothing to do with a desire for power and everything to do with a terror of powerlessness. The Queen version of you exercises fierce discernment deliberately. Invulnerability is replaced, slowly, by chosen vulnerability extended only to those who have earned it. The loyalty locked inside you &mdash; when it is finally given &mdash; is one of the most powerful forces in any relationship.',
+            'You are not hard to love. You are just impossible to fool. That is not a problem. That is a standard.'
+        ],
+        dcLine1: 'I am loyal beyond measure once I trust you &mdash; but my trust is not given, it&rsquo;s earned.',
+        dcLine2: 'If you want to love me well &mdash; as a partner, a friend, anyone asking for real closeness &mdash; be consistent. I&rsquo;m not hard to love. I&rsquo;m just impossible to fool.',
+        misunderstood: 'You have been called cold when you were careful. Controlling when you were protecting yourself. Share this so the people in your life understand: getting through to you is possible. It requires consistency, not performance. What they find on the other side is a loyalty most people spend their whole lives searching for.',
+        nextStep: 'The Controller pattern is the one most likely to be mistaken for strength &mdash; by you and everyone around you. Your Knight in Shining Armour has a full chapter on the Ice Queen effect, what it protects, and what it costs the woman inside it.'
     },
-    'pattern-feeling-lost': {
-        name: 'Lost in the Relationship',
-        mailchimpTag: 'pattern-feeling-lost',
-        description: 'You are capable, perceptive, and deeply caring. You are also not entirely sure who you are when you are not in relationship to someone else. Your sense of self has become so interwoven with the people you love that separating the two feels almost impossible.',
-        meaning: 'This is not a personality flaw. It is what happens when your identity was formed in relationship to others\' needs before your own. You learned to attune to the people around you — to anticipate, to accommodate, to disappear when necessary. It kept you safe. It also made it hard to know where they end and you begin.',
-        origin: 'This pattern usually develops in early life, in families where your role was to manage someone else\'s emotional world — a parent\'s moods, a sibling\'s needs, a household\'s stability. You became very good at reading the room. The cost was losing the thread back to yourself.'
+    PLE: {
+        name: 'The People-Pleaser',
+        tag: 'archetype-people-pleaser',
+        headline: 'You weren&rsquo;t born without needs. You were taught that having them was dangerous. Every yes that cost you was a survival strategy dressed up as kindness.',
+        mirror: [
+            'You are the easy one. The accommodating one. The one who never makes a fuss. You have been called low maintenance, easygoing, understanding. You have smiled at those words and felt something collapse quietly inside you.',
+            'You have needs &mdash; deep ones, clear ones &mdash; that you learned very early were not safe to express. So you folded yourself smaller. And smaller. Until you fit perfectly into whatever shape the people around you needed.',
+            'The cost: you give everyone what they need and quietly starve. You accumulate resentment with nowhere to put it. You occasionally explode in ways that surprise even you. And then you apologise for that too. You have been called demanding when you finally asked. Difficult when you finally said no. Dramatic when you expressed, once, what had been building for months. You are not too much. You were simply in relationships with people who needed you to be too little.'
+        ],
+        reframe: [
+            'The People-Pleaser pattern is not weakness. It is the most sophisticated form of emotional intelligence misdirected. The Queen version of you aims that attunement inward as well as outward. Needs voiced with pride. The word no as an act of self-respect rather than aggression.',
+            'You are learning to have needs out loud. That is not demanding. That is human. And the right people will not find your needs a burden. They will find them a relief.'
+        ],
+        dcLine1: 'I spent years being whatever anyone needed me to be &mdash; so easy to be with, and so invisible at the same time.',
+        dcLine2: 'If you want to love me well &mdash; in any relationship, at any stage &mdash; ask me what I want. I&rsquo;m learning to answer. And my answer is worth waiting for.',
+        misunderstood: 'You have been called dramatic for finally speaking. Needy for finally drawing a line. Share this so every person who has benefited from your endless accommodation understands: not a woman without needs, but a woman who is finally, courageously, learning to voice them. That is not a warning. That is a gift.',
+        nextStep: 'The People-Pleaser pattern is the one most likely to be rewarded by the world &mdash; right up until it breaks you. Your Knight in Shining Armour goes deep on why this pattern forms and what it takes to build self-worth that makes saying no feel like self-respect rather than selfishness.'
     },
-    'pattern-resisting-change': {
-        name: 'The Knowing-Doing Gap',
-        mailchimpTag: 'pattern-resisting-change',
-        description: 'You can see the pattern clearly. You can describe it in clinical detail. You have probably explained it to a therapist, journalled about it, built an entire self-awareness practice around it. And yet here you are — still doing the thing you know you do.',
-        meaning: 'This is not a willpower problem. The pattern is stored somewhere that insight alone cannot reach — in the nervous system, in the body, in the part of you that learned this long before you had language for it. Understanding it at the conscious level is not the same as updating the programme that runs it.',
-        origin: 'This gap between knowing and changing almost always points to a wound that was formed before conscious memory. The mind has caught up. The body has not. The work that is missing is not more awareness — it is a different kind of work entirely, one that reaches the level where the pattern actually lives.'
-    },
-    'pattern-disconnected': {
-        name: 'The Protected Self',
-        mailchimpTag: 'pattern-disconnected',
-        description: 'You have built something formidable. From the outside, you appear self-sufficient, capable, and in control. From the inside, you know that you are keeping people at a specific distance — close enough to feel connected, far enough to feel safe.',
-        meaning: 'The wall was not built out of coldness. It was built out of intelligence. Something happened that made it clear that being fully seen was dangerous — that vulnerability led to pain, that trust was a liability. The protection programme you built in response has been extraordinarily effective. It has also kept out things you actually want.',
-        origin: 'This pattern almost always begins with a specific betrayal or abandonment — a moment when someone you trusted completely showed you that trust was unsafe. The decision that followed was made in a fraction of a second: never again. You have been honouring that decision ever since.'
-    },
-    'pattern-embracing-new': {
-        name: 'Ready for the Next Level',
-        mailchimpTag: 'pattern-embracing-new',
-        description: 'Something has shifted. You can feel it. The old patterns are less loud than they used to be, and there is a version of yourself becoming visible that you recognise but have not yet fully inhabited. You are not at the beginning of this work. You are ready for the next layer.',
-        meaning: 'The fact that you are here — that something in you said yes to this — is itself a signal. You have done enough work to know that knowing is not the same as changing, and that real transformation requires going to the level where the pattern actually lives. The question now is what that looks like specifically for you.',
-        origin: 'Even for people who feel ready and open, there are almost always earlier layers that the conscious mind has processed but the body has not yet released. The work at this stage is not dramatic — it is precise. Finding the specific code still running underneath the growth, and updating it at the level where it was written.'
+    SPL: {
+        name: 'The Splitter',
+        tag: 'archetype-splitter',
+        headline: 'You didn&rsquo;t choose the wrong people. You chose the only kind of love that felt survivable. Now you&rsquo;re ready for something different.',
+        mirror: [
+            'You know the feeling. The relationship that is safe, stable, kind &mdash; and somehow flat. And the one that is electric, consuming, alive &mdash; and somehow always just out of reach, or always costing you more than you can afford.',
+            'Somewhere in your history, love and safety stopped feeling like things that could coexist. So your nervous system filed them separately. Safe people in one compartment. Desired people in another. And the wall between those compartments has quietly shaped every significant relationship since.',
+            'This is why you feel the pull toward people who are unavailable, or almost right. Not because you are self-destructive. Because your nervous system learned that this is what love feels like &mdash; half-given, half-withheld, always slightly out of reach. You are not broken. You are not addicted to chaos. You are someone whose template for love was built with a structural flaw. And templates can be rebuilt.'
+        ],
+        reframe: [
+            'The Splitter pattern operates at the intersection of the deepest human needs: to be safe and to be desired, to be seen and to be chosen. The Queen version of you holds both. Safe and alive. Present and passionate. No longer choosing to survive. No longer keeping heart and desire in separate rooms.',
+            'You did not choose unavailable people because something is wrong with you. You chose survivable love because available love felt like too much risk. Now you know that. Now everything changes.'
+        ],
+        dcLine1: 'I used to choose love I could survive losing because I didn&rsquo;t believe I could have love I actually wanted to keep.',
+        dcLine2: 'If you want to love me well &mdash; as a partner, anyone asking for real closeness &mdash; be both. Safe and alive. I finally believe that exists, and I finally believe I deserve it.',
+        misunderstood: 'You have been called dramatic for feeling too much. Commitment-phobic for leaving what was safe but dead. Self-destructive for staying in what was alive but costly. Share this so people understand: you weren&rsquo;t choosing wrong. You were choosing the only thing your nervous system recognised as love. You weren&rsquo;t asking for too much. You were asking for all of it. And you were right to.',
+        nextStep: 'The Splitter pattern is the central pattern in Your Knight in Shining Armour &mdash; it is Maria&rsquo;s story, and the story of dozens of clients who came wondering why love always felt incomplete. The book will show you exactly how this split was created and what the path back to wholeness looks like.'
     }
 };
 
-// ══ STATE ═════════════════════════════════════════════════════
+// ══ STATE ══
 let currentQ = 0;
-let responses = {};
+let responses = {};      // responses[index] = optionIndex
 let userData = {};
-let detectedPattern = 'pattern-prove-worth';
+let resultKeys = { dominant: 'OVG', secondary: null };
 
-// ══ START ═════════════════════════════════════════════════════
+// ══ START ══
 function startAssessment() {
     const name = document.getElementById('userName').value.trim();
     const email = document.getElementById('userEmail').value.trim();
@@ -655,7 +655,7 @@ function startAssessment() {
     renderQuestion(0);
 }
 
-// ══ RENDER ════════════════════════════════════════════════════
+// ══ RENDER ══
 function renderQuestion(index) {
     const q = questions[index];
     const pct = Math.round(((index + 1) / questions.length) * 100);
@@ -663,146 +663,143 @@ function renderQuestion(index) {
     document.getElementById('progressPct').textContent = pct + '%';
     document.getElementById('progressFill').style.width = pct + '%';
     document.getElementById('backBtn').style.visibility = index > 0 ? 'visible' : 'hidden';
-    document.getElementById('nextBtn').textContent = index === questions.length - 1 ? 'See My Pattern →' : 'Next →';
+    document.getElementById('nextBtn').textContent = index === questions.length - 1 ? 'See My Pattern \u2192' : 'Next \u2192';
 
     const container = document.getElementById('questionContainer');
-
-    if (q.type === 'radio') {
-        container.innerHTML = `
-            <div class="question-card">
-                <div class="question-text">${q.text}</div>
-                <div class="option-list">
-                    ${q.options.map((opt, i) => `
-                        <div class="option-item ${responses[q.id] === i ? 'selected' : ''}"
-                             onclick="selectOption(${q.id}, ${i}, this, 'radio')">
-                            <div class="option-indicator"></div>
-                            <div class="option-text">${opt.text}</div>
-                        </div>
-                    `).join('')}
-                </div>
-            </div>`;
-    } else if (q.type === 'checkbox') {
-        const selected = responses[q.id] || [];
-        container.innerHTML = `
-            <div class="question-card">
-                <div class="question-text">${q.text}</div>
-                <div class="option-list">
-                    ${q.options.map((opt, i) => `
-                        <div class="option-item checkbox ${selected.includes(i) ? 'selected' : ''}"
-                             onclick="toggleCheckbox(${q.id}, ${i}, this)">
-                            <div class="option-indicator"></div>
-                            <div class="option-text">${opt.text}</div>
-                        </div>
-                    `).join('')}
-                </div>
-            </div>`;
-    } else if (q.type === 'textarea') {
-        container.innerHTML = `
-            <div class="question-card">
-                <div class="question-text">${q.text}</div>
-                <textarea class="open-textarea" id="openText" placeholder="${q.placeholder}"
-                    oninput="responses[${q.id}] = this.value">${responses[q.id] || ''}</textarea>
-            </div>`;
-    }
+    container.innerHTML = `
+        <div class="question-card">
+            <div class="question-text">${q.text}</div>
+            <div class="option-list">
+                ${q.options.map((opt, i) => `
+                    <div class="option-item ${responses[index] === i ? 'selected' : ''}" onclick="selectOption(${index}, ${i}, this)">
+                        <div class="option-indicator"></div>
+                        <div class="option-text">${opt.text}</div>
+                    </div>`).join('')}
+            </div>
+        </div>`;
 }
 
-function selectOption(qId, index, el, type) {
-    responses[qId] = index;
-    document.querySelectorAll('.option-item:not(.checkbox)').forEach(e => e.classList.remove('selected'));
+function selectOption(qIndex, optIndex, el) {
+    responses[qIndex] = optIndex;
+    document.querySelectorAll('.option-item').forEach(e => e.classList.remove('selected'));
     el.classList.add('selected');
-    // Detect pattern from Q1
-    if (qId === 1 && questions[0].options[index].pattern) {
-        detectedPattern = questions[0].options[index].pattern;
-    }
-}
-
-function toggleCheckbox(qId, index, el) {
-    if (!responses[qId]) responses[qId] = [];
-    const arr = responses[qId];
-    const pos = arr.indexOf(index);
-    if (pos === -1) { arr.push(index); el.classList.add('selected'); }
-    else { arr.splice(pos, 1); el.classList.remove('selected'); }
 }
 
 function goNext() {
-    const q = questions[currentQ];
-    // Validate
-    if (q.type === 'radio' && responses[q.id] === undefined) {
-        alert('Please select an option to continue.'); return;
-    }
-    if (q.type === 'textarea') {
-        responses[q.id] = document.getElementById('openText')?.value || '';
-    }
-
+    if (responses[currentQ] === undefined) { alert('Please select an option to continue.'); return; }
     if (currentQ < questions.length - 1) {
         currentQ++;
         renderQuestion(currentQ);
         window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
+        computeResult();
         submitAndShowResults();
     }
 }
 
 function goBack() {
-    if (currentQ > 0) {
-        currentQ--;
-        renderQuestion(currentQ);
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+    if (currentQ > 0) { currentQ--; renderQuestion(currentQ); window.scrollTo({ top: 0, behavior: 'smooth' }); }
 }
 
-// ══ SUBMIT & RESULTS ══════════════════════════════════════════
-async function submitAndShowResults() {
-    // Capture Q5 textarea in case it wasn't captured by goNext
-    const openTextEl = document.getElementById('openText');
-    if (openTextEl && !responses[5]) {
-        responses[5] = openTextEl.value || '';
+// ══ SCORING ══
+function computeResult() {
+    const scores = { DIS: 0, OVG: 0, CON: 0, PLE: 0, SPL: 0 };
+    for (let i = 0; i < questions.length; i++) {
+        const sel = responses[i];
+        if (sel !== undefined) scores[questions[i].options[sel].a] += 1;
     }
-    const pattern = patterns[detectedPattern];
+    // Sort archetypes by score, desc
+    const ranked = Object.keys(scores).sort((a, b) => scores[b] - scores[a]);
+    let dominant = ranked[0];
+    const topScore = scores[dominant];
 
-    // Show results immediately
+    // Deterministic tie-break: prefer the archetype chosen on the most diagnostic questions (Q9 'pattern that repeats', then Q1, then Q10)
+    const tied = ranked.filter(k => scores[k] === topScore);
+    if (tied.length > 1) {
+        const priorityQ = [8, 0, 9, 4]; // 0-indexed: Q9, Q1, Q10, Q5
+        for (const qi of priorityQ) {
+            if (responses[qi] !== undefined) {
+                const chosen = questions[qi].options[responses[qi]].a;
+                if (tied.includes(chosen)) { dominant = chosen; break; }
+            }
+        }
+    }
+
+    // Secondary: highest remaining score within 20% of dominant, and > 0
+    let secondary = null;
+    for (const k of ranked) {
+        if (k === dominant) continue;
+        if (scores[k] > 0 && scores[k] >= topScore * 0.8) { secondary = k; break; }
+    }
+    resultKeys = { dominant, secondary, scores };
+}
+
+// ══ RESULTS ══
+async function submitAndShowResults() {
+    const dom = archetypes[resultKeys.dominant];
+    const sec = resultKeys.secondary ? archetypes[resultKeys.secondary] : null;
+
     document.getElementById('assessmentScreen').style.display = 'none';
     document.getElementById('resultsScreen').style.display = 'block';
-    document.getElementById('patternName').textContent = pattern.name;
-    document.getElementById('patternDescription').textContent = pattern.description;
-    document.getElementById('patternMeaning').textContent = pattern.meaning;
-    document.getElementById('patternOrigin').textContent = pattern.origin;
+
+    document.getElementById('patternName').innerHTML = dom.name;
+    document.getElementById('patternHeadline').innerHTML = dom.headline;
+
+    const secEl = document.getElementById('patternSecondary');
+    if (sec) {
+        secEl.innerHTML = `You may also recognise yourself in <strong>${sec.name}</strong>. Most women carry more than one pattern. There is almost always a dominant theme &mdash; and yours is ${dom.name}.`;
+        secEl.style.display = 'block';
+    } else {
+        secEl.style.display = 'none';
+    }
+
+    document.getElementById('patternMirror').innerHTML = dom.mirror.map(p => `<p>${p}</p>`).join('');
+    document.getElementById('patternReframe').innerHTML = dom.reframe.map(p => `<p>${p}</p>`).join('');
+
+    document.getElementById('dcLine1').innerHTML = dom.dcLine1;
+    document.getElementById('dcLine2').innerHTML = dom.dcLine2;
+    document.getElementById('misunderstoodNote').innerHTML = dom.misunderstood;
+    document.getElementById('nextStepBody').innerHTML = dom.nextStep;
+
+    // UTM-tagged ecosystem links
+    const utm = `utm_source=assessment&utm_medium=result&utm_campaign=${dom.tag}`;
+    document.getElementById('bookLink').href = `${AMAZON_URL}?${utm}`;
+    document.getElementById('discoveryLink').href = `${CALENDLY_URL}?${utm}`;
+
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
+    // ── Data capture ──
     const nameParts = userData.name.trim().split(' ');
     const firstName = nameParts[0] || '';
     const lastName = nameParts.slice(1).join(' ') || '';
 
-    // 1. Submit to Google Sheets for data capture
+    const answerText = {};
+    for (let i = 0; i < questions.length; i++) {
+        answerText['q' + (i + 1)] = responses[i] !== undefined ? stripTags(questions[i].options[responses[i]].text) : '';
+    }
+
+    // 1. Google Sheets
     const sheetsPayload = {
         type: 'sheets_only',
         timestamp: new Date().toISOString(),
         userName: userData.name,
         userEmail: userData.email,
-        primaryThreshold: 'assessment-v2',
-        dominantPattern: pattern.name,
-        copingStyle: responses[2] !== undefined ? questions[1].options[responses[2]].text : '',
-        emotionalSignature: '',
-        somaticPattern: responses[4] !== undefined ? questions[3].options[responses[4]].text : '',
-        readinessLevel: Array.isArray(responses[3]) ? responses[3].map(i => questions[2].options[i].text).join(', ') : '',
-        responses: JSON.stringify({
-            q1: responses[1] !== undefined ? questions[0].options[responses[1]].text : '',
-            q2: responses[2] !== undefined ? questions[1].options[responses[2]].text : '',
-            q3: Array.isArray(responses[3]) ? responses[3].map(i => questions[2].options[i].text).join(', ') : '',
-            q4: responses[4] !== undefined ? questions[3].options[responses[4]].text : '',
-            q5: responses[5] !== undefined ? responses[5] : ''
-        }),
-        profile: JSON.stringify({ dominantPattern: pattern.name, patternTag: detectedPattern })
+        primaryThreshold: 'assessment-v3-archetypes',
+        dominantPattern: dom.name,
+        dominantTag: dom.tag,
+        secondaryPattern: sec ? sec.name : '',
+        secondaryTag: sec ? sec.tag : '',
+        scores: JSON.stringify(resultKeys.scores),
+        responses: JSON.stringify(answerText),
+        profile: JSON.stringify({ dominant: dom.name, dominantTag: dom.tag, secondary: sec ? sec.name : '', secondaryTag: sec ? sec.tag : '' })
     };
-
     fetch(GOOGLE_SCRIPT_URL, {
-        method: 'POST',
-        mode: 'no-cors',
+        method: 'POST', mode: 'no-cors',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(sheetsPayload)
     }).catch(err => console.log('Sheets error:', err));
 
-    // 2. Subscribe to Mailchimp with pattern tag via Vercel API
+    // 2. Mailchimp via Vercel API — tag dominant archetype (sequences activate later)
     try {
         await fetch('/api/subscribe', {
             method: 'POST',
@@ -811,16 +808,155 @@ async function submitAndShowResults() {
                 email: userData.email,
                 firstName,
                 lastName,
-                tags: [detectedPattern, 'assessment-completed'],
+                tags: [dom.tag, 'assessment-completed'],
                 mergeFields: {
                     FNAME: firstName,
                     LNAME: lastName,
-                    PATTERN: pattern.name
+                    PATTERN: dom.name,
+                    SECONDARY: sec ? sec.name : ''
                 }
             })
         });
     } catch (err) {
         console.log('Mailchimp error:', err);
+    }
+
+    // Pre-render the shareable card image
+    renderCardImage();
+}
+
+function stripTags(html) {
+    const d = document.createElement('div');
+    d.innerHTML = html;
+    return (d.textContent || d.innerText || '').trim();
+}
+
+// ══ DECLARATION CARD IMAGE (canvas) ══
+let cardBlob = null;
+
+function decodeEntities(html) {
+    const d = document.createElement('textarea');
+    d.innerHTML = html;
+    return d.value;
+}
+
+function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
+    const words = text.split(' ');
+    let line = '';
+    const lines = [];
+    for (let n = 0; n < words.length; n++) {
+        const test = line + words[n] + ' ';
+        if (ctx.measureText(test).width > maxWidth && n > 0) {
+            lines.push(line.trim());
+            line = words[n] + ' ';
+        } else { line = test; }
+    }
+    lines.push(line.trim());
+    const startY = y - ((lines.length - 1) * lineHeight) / 2;
+    lines.forEach((ln, i) => ctx.fillText(ln, x, startY + i * lineHeight));
+    return lines.length * lineHeight;
+}
+
+async function renderCardImage() {
+    const canvas = document.getElementById('cardCanvas');
+    const ctx = canvas.getContext('2d');
+    const W = canvas.width, H = canvas.height;
+    const dom = archetypes[resultKeys.dominant];
+
+    // Ensure fonts are loaded before drawing
+    try {
+        await Promise.all([
+            document.fonts.load('400 italic 56px "Playfair Display"'),
+            document.fonts.load('600 40px "DM Sans"'),
+            document.fonts.load('500 22px "DM Sans"')
+        ]);
+        await document.fonts.ready;
+    } catch (e) { /* fall back to system fonts */ }
+
+    // Background
+    const grad = ctx.createLinearGradient(0, 0, W, H);
+    grad.addColorStop(0, '#0c2742');
+    grad.addColorStop(1, '#091e35');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, W, H);
+
+    // Inset gold border
+    ctx.strokeStyle = 'rgba(201,160,97,0.4)';
+    ctx.lineWidth = 2;
+    ctx.strokeRect(48, 48, W - 96, H - 96);
+
+    ctx.textAlign = 'center';
+    const cx = W / 2;
+    const maxW = W - 220;
+
+    // Line 1 — italic Playfair, cream
+    ctx.fillStyle = '#FAF8F5';
+    ctx.font = 'italic 400 56px "Playfair Display", Georgia, serif';
+    const l1text = decodeEntities(dom.dcLine1);
+    const h1 = wrapText(ctx, l1text, cx, H * 0.36, maxW, 78);
+
+    // Divider
+    ctx.strokeStyle = '#C9A061';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(cx - 40, H * 0.36 + h1 / 2 + 46);
+    ctx.lineTo(cx + 40, H * 0.36 + h1 / 2 + 46);
+    ctx.stroke();
+
+    // Line 2 — DM Sans semibold, white
+    ctx.fillStyle = '#ffffff';
+    ctx.font = '600 40px "DM Sans", Arial, sans-serif';
+    const l2text = decodeEntities(dom.dcLine2);
+    wrapText(ctx, l2text, cx, H * 0.64, maxW, 58);
+
+    // Signature
+    ctx.fillStyle = '#C9A061';
+    ctx.font = '600 24px "DM Sans", Arial, sans-serif';
+    ctx.fillText('V A L E N T I N A   T U D O S E', cx, H - 130);
+    ctx.fillStyle = 'rgba(255,255,255,0.5)';
+    ctx.font = '500 22px "DM Sans", Arial, sans-serif';
+    ctx.fillText('reset.happyeverafter.asia', cx, H - 96);
+
+    cardBlob = await new Promise(res => canvas.toBlob(res, 'image/png'));
+}
+
+// ══ SHARE ══
+async function shareCard() {
+    const status = document.getElementById('shareStatus');
+    if (!cardBlob) { await renderCardImage(); }
+    const file = new File([cardBlob], 'my-declaration.png', { type: 'image/png' });
+
+    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        try {
+            await navigator.share({ files: [file], text: SHARE_CAPTION });
+            status.textContent = '';
+            return;
+        } catch (e) {
+            if (e && e.name === 'AbortError') { status.textContent = ''; return; }
+        }
+    }
+    // Desktop / unsupported fallback: download image + copy caption
+    downloadCard();
+    await copyCaption(true);
+    status.textContent = 'Card downloaded and caption copied. Post it anywhere \u2014 Instagram, a message to someone, your profile.';
+}
+
+function downloadCard() {
+    if (!cardBlob) return;
+    const url = URL.createObjectURL(cardBlob);
+    const a = document.createElement('a');
+    a.href = url; a.download = 'my-declaration.png';
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+async function copyCaption(silent) {
+    const status = document.getElementById('shareStatus');
+    try {
+        await navigator.clipboard.writeText(SHARE_CAPTION);
+        if (!silent) status.textContent = 'Caption copied. Paste it with your card.';
+    } catch (e) {
+        if (!silent) status.textContent = 'Caption: ' + SHARE_CAPTION;
     }
 }
 </script>
