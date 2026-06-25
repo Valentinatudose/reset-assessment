@@ -325,7 +325,7 @@
     <!-- ══ WELCOME SCREEN ══ -->
     <div id="welcomeScreen">
         <div class="welcome-eyebrow">Your RESET Profile</div>
-        <h1 class="welcome-headline">The reason you struggle<br>in your relationships is not<br>the same as everyone else&rsquo;s.</h1>
+        <h1 class="welcome-headline" id="welcomeHeadline">The reason you struggle<br>in your relationships is not<br>the same as everyone else&rsquo;s.</h1>
         <p class="welcome-body">You have probably been called too much, not enough, or difficult to understand. By partners. By friends. By family. By people who loved you and still couldn&rsquo;t quite reach you.</p>
         <p class="welcome-body">This assessment won&rsquo;t tell you what&rsquo;s wrong with you. It will tell you what you&rsquo;ve been protecting, why you&rsquo;ve been protecting it &mdash; and give you the language to tell the people in your life how to actually love you.</p>
         <p class="welcome-body"><strong>Eight minutes. Five patterns. One result that might explain more about your relationships than anything else you&rsquo;ve ever read about yourself.</strong></p>
@@ -433,6 +433,26 @@ const ASSESSMENT_URL = 'reset.happyeverafter.asia';
 const AMAZON_URL = 'https://www.amazon.com/dp/B0GSQ6VSMF';
 const CALENDLY_URL = 'https://calendly.com/valentina-tudose/new-meeting';
 const SHARE_CAPTION = 'Just took an assessment that finally explained something I\u2019ve never been able to put into words. Link in Valentina\u2019s bio if you want yours \u2014 reset.happyeverafter.asia';
+
+// ══ MATCHED AD HEADLINES ══
+// Each test ad links with ?h=1..5 so the landing headline finishes the ad's sentence.
+// No parameter (direct/organic traffic) keeps the default headline already in the markup.
+const AD_HEADLINES = {
+    '1': 'You can name your pattern<br>perfectly. You still<br>can&rsquo;t stop living it.',
+    '2': 'Different man.<br>Same relationship.<br>Every single time.',
+    '3': 'You hold everyone<br>together.<br>Who holds you?',
+    '4': 'You became whoever<br>they needed. Somewhere<br>in there, you lost yourself.',
+    '5': 'You swore this time<br>would be different.<br>It wasn&rsquo;t.'
+};
+(function applyAdHeadline() {
+    try {
+        const h = new URLSearchParams(window.location.search).get('h');
+        if (h && AD_HEADLINES[h]) {
+            const el = document.getElementById('welcomeHeadline');
+            if (el) el.innerHTML = AD_HEADLINES[h];
+        }
+    } catch (e) { /* default headline stays */ }
+})();
 
 // ══ ARCHETYPE KEYS ══ DIS=Disconnected, OVG=Over-Giver, CON=Controller, PLE=People-Pleaser, SPL=Splitter
 
