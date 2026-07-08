@@ -295,6 +295,19 @@
         }
         .nextstep-cta a.discovery:hover { color: var(--navy); }
 
+        .proof-quote {
+            max-width: 540px; margin: 0 auto 1.6rem; padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+        }
+        .proof-quote-text {
+            font-family: 'Playfair Display', serif; font-style: italic;
+            font-size: 1.08rem; line-height: 1.6; color: var(--navy);
+        }
+        .proof-quote-attr {
+            margin-top: 0.9rem; font-size: 0.72rem; letter-spacing: 0.1em;
+            text-transform: uppercase; color: var(--text-muted); font-weight: 600;
+        }
+
         /* ── FOOTER ── */
         .site-footer {
             text-align: center; padding: 2rem; font-size: 0.8rem; color: var(--text-muted);
@@ -326,9 +339,8 @@
     <div id="welcomeScreen">
         <div class="welcome-eyebrow">Your RESET Profile</div>
         <h1 class="welcome-headline" id="welcomeHeadline">The reason you struggle<br>in your relationships is not<br>the same as everyone else&rsquo;s.</h1>
-        <p class="welcome-body">You have probably been called too much, not enough, or difficult to understand. By partners. By friends. By family. By people who loved you and still couldn&rsquo;t quite reach you.</p>
-        <p class="welcome-body">This assessment won&rsquo;t tell you what&rsquo;s wrong with you. It will tell you what you&rsquo;ve been protecting, why you&rsquo;ve been protecting it &mdash; and give you the language to tell the people in your life how to actually love you.</p>
-        <p class="welcome-body"><strong>Eight minutes. Five patterns. One result that might explain more about your relationships than anything else you&rsquo;ve ever read about yourself.</strong></p>
+        <p class="welcome-body">You have been called too much, not enough, or difficult to understand &mdash; by people who loved you and still couldn&rsquo;t quite reach you.</p>
+        <p class="welcome-body">This won&rsquo;t tell you what&rsquo;s wrong with you. It tells you what you&rsquo;ve been protecting, and why &mdash; and gives you the language to tell people how to actually love you.</p>
         <div class="gold-rule"></div>
         <div class="welcome-meta">
             <div class="meta-item"><div class="meta-dot"></div> Ten questions</div>
@@ -411,6 +423,10 @@
             <div class="nextstep-eyebrow">Your Next Step</div>
             <div class="nextstep-title">Your Knight in Shining Armour</div>
             <div class="nextstep-body" id="nextStepBody"></div>
+            <div class="proof-quote">
+                <div class="proof-quote-text">&ldquo;From our second session, I had a breakthrough that broke a fundamental idea I&rsquo;d held about myself my entire life. I feel so much more whole and calm now &mdash; and friends have noticed the change.&rdquo;</div>
+                <div class="proof-quote-attr">&mdash; S., teacher, Hong Kong</div>
+            </div>
             <div class="nextstep-cta">
                 <a class="btn-gold" id="bookLink" href="#" target="_blank" rel="noopener">Get the book on Amazon &rarr;</a>
                 <a class="discovery" id="discoveryLink" href="#" target="_blank" rel="noopener">Or book a free discovery call to go deeper &rarr;</a>
@@ -569,15 +585,11 @@ const archetypes = {
         tag: 'archetype-disconnected',
         headline: 'You&rsquo;re not cold. You&rsquo;re not distant. You feel everything &mdash; and somewhere along the way, that started to feel dangerous.',
         mirror: [
-            'You have probably been called cold. Unavailable. Hard to reach. People who love you have complained that you disappear, that they can&rsquo;t find you, that you&rsquo;re there but not really there.',
-            'What they didn&rsquo;t know &mdash; and what you may not have had words for until now &mdash; is that you disappear because you feel too much, not too little.',
-            'Somewhere early in your life, being fully present stopped feeling safe. Maybe your feelings were met with overwhelm, irritation, or silence. Maybe you learned that needing was a burden and feeling was a weakness. So you found a way to be in the room while keeping the most sensitive parts of yourself somewhere nobody could reach them. That wasn&rsquo;t a flaw. That was a five-year-old&rsquo;s most intelligent solution to a problem she didn&rsquo;t ask to have.',
-            'The cost in adult life has been this: the relationships that should feel closest often feel like they&rsquo;re happening through glass. You love people and still feel alone with them. You want to be known and simultaneously work very hard not to be.',
-            'You are not broken. You are not cold. You are someone whose emotional depth was never met with the safety it needed to come fully forward. That changes now.'
+            'You have probably been called cold. Unavailable. Hard to reach. People who love you say you disappear &mdash; that you&rsquo;re there but not really there. What they don&rsquo;t know is that you disappear because you feel too much, not too little. The relationships that should feel closest often feel like they&rsquo;re happening through glass: you love people and still feel alone with them.',
+            'Somewhere early, being fully present stopped feeling safe &mdash; so you found a way to stay in the room while keeping the most sensitive parts of yourself somewhere nobody could reach. That was never a flaw. It was a child&rsquo;s most intelligent solution to a problem she didn&rsquo;t ask for. You are not cold. You are someone whose depth was never met with the safety it needed to come forward.'
         ],
         reframe: [
-            'The Disconnected pattern is not about an inability to feel. It is about an inability to feel safely. On the other side of it is the version of you who reclaims all of it: full presence, depth as a gift rather than a liability, intimacy extended on your own terms to the people who have earned it.',
-            'You were never too much. You were never too little. You were protecting something worth protecting. Now you get to decide who is safe enough to see it.'
+            'The Disconnected pattern is not an inability to feel. It is an inability to feel safely. On the other side of it is the version of you who reclaims all of it &mdash; full presence, depth as a gift rather than a liability. You were never too much, and never too little. You were protecting something worth protecting. Now you get to decide who is safe enough to see it.'
         ],
         dcLine1: 'I go quiet when I&rsquo;m overwhelmed &mdash; not because I don&rsquo;t care, but because I feel everything more than I show.',
         dcLine2: 'If you want to love me well &mdash; as a partner, a friend, anyone who wants to stay &mdash; stay close when I go silent. I&rsquo;m not leaving. I&rsquo;m processing.',
@@ -589,14 +601,11 @@ const archetypes = {
         tag: 'archetype-over-giver',
         headline: 'You love without limits. You always have. The problem was never how much you gave &mdash; it was who you were giving it to.',
         mirror: [
-            'You are the one who shows up. Always. Without being asked. You remember what people need before they know they need it. You hold things together &mdash; relationships, families, friendships, teams &mdash; often invisibly, often without acknowledgment, always at a cost to yourself that you rarely name out loud.',
-            'You have probably been called selfless, generous, the strong one. And you have probably felt, in your most honest moments, that those are beautiful words for something that is slowly exhausting you.',
-            'Because here is what nobody sees: underneath the giving is a belief, installed so early you can&rsquo;t remember a time without it, that your needs are too much. That love is something you earn, not something you receive. That the only safe version of connection is the one where you are indispensable &mdash; because if you are needed, you cannot be abandoned. So you gave. And you gave. And you attracted people who were very good at receiving.',
-            'You were never too giving. You were giving in the wrong direction. You are not a martyr. You are not naive. You are someone with an extraordinary capacity for love who was never shown how to aim some of it at yourself.'
+            'You are the one who shows up. Always. Without being asked. You remember what people need before they know they need it. You&rsquo;ve been called selfless, generous, the strong one &mdash; and in your most honest moments those feel like beautiful words for something that is slowly exhausting you.',
+            'Underneath the giving is a belief installed so early you can&rsquo;t remember a time without it: that your needs are too much, that love is earned rather than received, that the only safe connection is the one where you&rsquo;re indispensable &mdash; because if you are needed, you cannot be abandoned. You were never too giving. You were giving in the wrong direction &mdash; someone with an extraordinary capacity for love who was never shown how to aim some of it at herself.'
         ],
         reframe: [
-            'The Over-Giver pattern does not mean you chose wrong or loved wrong. It means you loved with full capacity from a half-empty place. The version of you on the other side of this receives as fluently as she gives. She loves without limits and includes herself in that love. She is not less generous &mdash; she is finally generous in all directions.',
-            'You are not too much. You just spent too long around people who mistook your limitless giving for an absence of standards. That ends here.'
+            'The Over-Giver pattern does not mean you loved wrong. It means you loved with full capacity from a half-empty place. The version of you on the other side receives as fluently as she gives &mdash; not less generous, finally generous in all directions. You are not too much. You just spent too long around people who mistook your limitless giving for an absence of standards. That ends here.'
         ],
         dcLine1: 'I love without limits and I show up completely &mdash; I just spent too long doing it for people who mistook that for convenience.',
         dcLine2: 'If you want to love me well &mdash; partner, friend, family, anyone who wants to stay &mdash; match my energy. I&rsquo;m not hard to keep. I just finally know my worth.',
@@ -608,13 +617,11 @@ const archetypes = {
         tag: 'archetype-controller',
         headline: 'You are not controlling. You are someone who once trusted completely, got hurt completely, and made a very intelligent decision never to be that exposed again.',
         mirror: [
-            'You have been called cold. Guarded. Independent to a fault. The woman who doesn&rsquo;t need anyone. The one who has everything under control and somehow always looks like she is doing fine. What nobody sees is how much energy it takes to maintain that. The constant vigilance. The way you are already three steps ahead in every relationship, already mapping the exit, already preparing for the loss before it has arrived.',
-            'You are not cold. You are someone who paid attention. Who learned, at a formative moment, that depending on someone fully meant being at the mercy of a person who might not stay, might not be safe. And so you made yourself invulnerable. You became the person who needs no one. This is one of the most sophisticated protection programmes a human being can build.',
-            'The cost has been intimacy. Not the ability to feel it &mdash; you feel it more than almost anyone. The ability to let it land.'
+            'You have been called cold. Guarded. Independent to a fault &mdash; the woman who doesn&rsquo;t need anyone. What nobody sees is how much energy that takes: the constant vigilance, the way you are already three steps ahead in every relationship, already mapping the exit, already preparing for the loss before it has arrived.',
+            'You are not cold. You are someone who paid attention &mdash; who learned, at a formative moment, that depending on someone fully meant being at the mercy of a person who might not stay. So you made yourself invulnerable. It is one of the most sophisticated protection programmes a human being can build. The cost has been intimacy &mdash; not the ability to feel it, you feel it more than almost anyone, but the ability to let it land.'
         ],
         reframe: [
-            'The Controller pattern has nothing to do with a desire for power and everything to do with a terror of powerlessness. The version of you who is no longer braced for loss exercises fierce discernment by choice. Invulnerability gives way, slowly, to chosen vulnerability &mdash; extended only to those who have earned it. The loyalty locked inside you, when it is finally given, is one of the most powerful forces in any relationship.',
-            'You are not hard to love. You are just impossible to fool. That is not a problem. That is a standard.'
+            'The Controller pattern has nothing to do with a desire for power and everything to do with a terror of powerlessness. The version of you no longer braced for loss extends vulnerability by choice &mdash; only to those who have earned it &mdash; and the loyalty locked inside you, once given, is one of the most powerful forces in any relationship. You are not hard to love. You are just impossible to fool. That is not a problem. That is a standard.'
         ],
         dcLine1: 'I am loyal beyond measure once I trust you &mdash; but my trust is not given, it&rsquo;s earned.',
         dcLine2: 'If you want to love me well &mdash; as a partner, a friend, anyone asking for real closeness &mdash; be consistent. I&rsquo;m not hard to love. I&rsquo;m just impossible to fool.',
@@ -626,13 +633,11 @@ const archetypes = {
         tag: 'archetype-people-pleaser',
         headline: 'You weren&rsquo;t born without needs. You were taught that having them was dangerous. Every yes that cost you was a survival strategy dressed up as kindness.',
         mirror: [
-            'You are the easy one. The accommodating one. The one who never makes a fuss. You have been called low maintenance, easygoing, understanding. You have smiled at those words and felt something collapse quietly inside you.',
-            'You have needs &mdash; deep ones, clear ones &mdash; that you learned very early were not safe to express. So you folded yourself smaller. And smaller. Until you fit perfectly into whatever shape the people around you needed.',
-            'The cost: you give everyone what they need and quietly starve. You accumulate resentment with nowhere to put it. You occasionally explode in ways that surprise even you. And then you apologise for that too. You have been called demanding when you finally asked. Difficult when you finally said no. Dramatic when you expressed, once, what had been building for months. You are not too much. You were simply in relationships with people who needed you to be too little.'
+            'You are the easy one. The accommodating one. The one who never makes a fuss. You have been called low maintenance, easygoing, understanding &mdash; and smiled at those words while something collapsed quietly inside you.',
+            'You have needs &mdash; deep ones, clear ones &mdash; that you learned very early were not safe to express, so you folded yourself smaller and smaller until you fit whatever shape the people around you needed. The cost: you give everyone what they need and quietly starve, then get called demanding when you finally ask, dramatic when you finally say no. You are not too much. You were simply in relationships with people who needed you to be too little.'
         ],
         reframe: [
-            'The People-Pleaser pattern is not weakness. It is the most sophisticated form of emotional intelligence misdirected. The version of you who is no longer folding aims that attunement inward as well as outward. Needs voiced with pride. The word no as an act of self-respect rather than aggression.',
-            'You are learning to have needs out loud. That is not demanding. That is human. And the right people will not find your needs a burden. They will find them a relief.'
+            'The People-Pleaser pattern is not weakness. It is the most sophisticated form of emotional intelligence, misdirected. The version of you who is no longer folding aims that attunement inward as well as outward &mdash; needs voiced with pride, the word no as an act of self-respect rather than aggression. That is not demanding. That is human. And the right people will not find your needs a burden. They will find them a relief.'
         ],
         dcLine1: 'I spent years being whatever anyone needed me to be &mdash; so easy to be with, and so invisible at the same time.',
         dcLine2: 'If you want to love me well &mdash; in any relationship, at any stage &mdash; ask me what I want. I&rsquo;m learning to answer. And my answer is worth waiting for.',
@@ -645,12 +650,10 @@ const archetypes = {
         headline: 'You didn&rsquo;t choose the wrong people. You chose the only kind of love that felt survivable. Now you&rsquo;re ready for something different.',
         mirror: [
             'You know the feeling. The relationship that is safe, stable, kind &mdash; and somehow flat. And the one that is electric, consuming, alive &mdash; and somehow always just out of reach, or always costing you more than you can afford.',
-            'Somewhere in your history, love and safety stopped feeling like things that could coexist. So your nervous system filed them separately. Safe people in one compartment. Desired people in another. And the wall between those compartments has quietly shaped every significant relationship since.',
-            'This is why you feel the pull toward people who are unavailable, or almost right. Not because you are self-destructive. Because your nervous system learned that this is what love feels like &mdash; half-given, half-withheld, always slightly out of reach. You are not broken. You are not addicted to chaos. You are someone whose template for love was built with a structural flaw. And templates can be rebuilt.'
+            'Somewhere in your history, love and safety stopped feeling like things that could coexist, so your nervous system filed them separately &mdash; safe people in one compartment, desired people in another. That is why you feel the pull toward people who are unavailable, or almost right: not because you are self-destructive, but because your nervous system learned that this is what love feels like &mdash; half-given, half-withheld, always slightly out of reach. You are not broken. Your template for love was built with a structural flaw. And templates can be rebuilt.'
         ],
         reframe: [
-            'The Splitter pattern operates at the intersection of the deepest human needs: to be safe and to be desired, to be seen and to be chosen. The version of you who has done this work holds both. Safe and alive. Present and passionate. No longer choosing to survive. No longer keeping heart and desire in separate rooms.',
-            'You did not choose unavailable people because something is wrong with you. You chose survivable love because available love felt like too much risk. Now you know that. Now everything changes.'
+            'The Splitter pattern sits at the intersection of the deepest human needs: to be safe and to be desired, to be seen and to be chosen. The version of you who has done this work holds both &mdash; safe and alive, present and passionate, no longer keeping heart and desire in separate rooms. You did not choose unavailable people because something is wrong with you. You chose survivable love because available love felt like too much risk. Now you know that. Now everything changes.'
         ],
         dcLine1: 'I used to choose love I could survive losing because I didn&rsquo;t believe I could have love I actually wanted to keep.',
         dcLine2: 'If you want to love me well &mdash; as a partner, anyone asking for real closeness &mdash; be both. Safe and alive. I finally believe that exists, and I finally believe I deserve it.',
@@ -675,6 +678,7 @@ function startAssessment() {
     document.getElementById('welcomeScreen').style.display = 'none';
     document.getElementById('assessmentScreen').style.display = 'block';
     renderQuestion(0);
+    window.scrollTo(0, 0);   // reset to top so Question 1 isn't scrolled past on the welcome->Q1 handoff
 }
 
 // ══ RENDER ══
