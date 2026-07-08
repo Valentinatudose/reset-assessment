@@ -58,6 +58,23 @@
 
         /* ── WELCOME SCREEN ── */
         #welcomeScreen { display: block; }
+        .proof-bar {
+            background: var(--navy);
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem 3rem;
+            padding: 1.1rem 1.5rem;
+        }
+        .proof-item { text-align: center; }
+        .proof-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.35rem; color: var(--gold); line-height: 1.1; font-weight: 700;
+        }
+        .proof-label {
+            font-size: 0.62rem; letter-spacing: 0.13em; text-transform: uppercase;
+            color: rgba(255,255,255,0.72); margin-top: 0.3rem;
+        }
         .welcome-eyebrow {
             font-size: 0.75rem;
             letter-spacing: 0.14em;
@@ -74,6 +91,22 @@
             line-height: 1.22;
             margin-bottom: 1.8rem;
             font-weight: 700;
+            text-align: center;
+        }
+        .headline-turn {
+            display: block;
+            font-style: italic;
+            font-weight: 400;
+            color: var(--gold);
+            margin-top: 0.5rem;
+        }
+        .promise-line {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.02rem;
+            line-height: 1.8;
+            color: var(--navy);
+            max-width: 540px;
+            margin: 0 auto 2.5rem;
             text-align: center;
         }
         .welcome-body {
@@ -295,18 +328,6 @@
         }
         .nextstep-cta a.discovery:hover { color: var(--navy); }
 
-        .proof-quote {
-            max-width: 540px; margin: 0 auto 1.6rem; padding-top: 1.5rem;
-            border-top: 1px solid var(--border);
-        }
-        .proof-quote-text {
-            font-family: 'Playfair Display', serif; font-style: italic;
-            font-size: 1.08rem; line-height: 1.6; color: var(--navy);
-        }
-        .proof-quote-attr {
-            margin-top: 0.9rem; font-size: 0.72rem; letter-spacing: 0.1em;
-            text-transform: uppercase; color: var(--text-muted); font-weight: 600;
-        }
 
         /* ── FOOTER ── */
         .site-footer {
@@ -323,6 +344,10 @@
             .declaration-card { padding: 2.2rem 1.5rem; }
             .nextstep-card { padding: 1.6rem 1.4rem; }
             .welcome-meta { gap: 1rem; }
+            .proof-bar { gap: 0.9rem 1.6rem; padding: 0.9rem 1rem; }
+            .proof-num { font-size: 1.1rem; }
+            .proof-label { font-size: 0.55rem; letter-spacing: 0.1em; }
+            .headline-turn { font-size: 0.88em; }
         }
     </style>
 </head>
@@ -333,21 +358,24 @@
     <a href="https://happyeverafter.asia" class="header-link">happyeverafter.asia</a>
 </header>
 
+<div class="proof-bar">
+    <div class="proof-item"><div class="proof-num">12+</div><div class="proof-label">Years practice</div></div>
+    <div class="proof-item"><div class="proof-num">1,000+</div><div class="proof-label">Clients worldwide</div></div>
+    <div class="proof-item"><div class="proof-num">4</div><div class="proof-label">Continents</div></div>
+    <div class="proof-item"><div class="proof-num">100K+</div><div class="proof-label">TEDx views</div></div>
+    <div class="proof-item"><div class="proof-num">5-Stage</div><div class="proof-label">RESET Method™</div></div>
+</div>
+
 <div class="container">
 
     <!-- ══ WELCOME SCREEN ══ -->
     <div id="welcomeScreen">
         <div class="welcome-eyebrow">Your RESET Profile</div>
-        <h1 class="welcome-headline" id="welcomeHeadline">The reason you struggle<br>in your relationships is not<br>the same as everyone else&rsquo;s.</h1>
-        <p class="welcome-body">You have been called too much, not enough, or difficult to understand &mdash; by people who loved you and still couldn&rsquo;t quite reach you.</p>
-        <p class="welcome-body">This won&rsquo;t tell you what&rsquo;s wrong with you. It tells you what you&rsquo;ve been protecting, and why &mdash; and gives you the language to tell people how to actually love you.</p>
+        <h1 class="welcome-headline" id="welcomeHeadline">You&rsquo;ve done your homework.<br>Changed everything you could.<span class="headline-turn">Except the story you tell yourself about yourself.</span></h1>
+        <p class="welcome-body">You&rsquo;ve spent years trying to understand why the same thing keeps happening. But the story wasn&rsquo;t written by the part of you that understands. It was written long before you could remember, and it lives in your body as much as your mind.</p>
+        <p class="welcome-body">It has been choosing for you ever since &mdash; as if you were still the child who wrote it.</p>
         <div class="gold-rule"></div>
-        <div class="welcome-meta">
-            <div class="meta-item"><div class="meta-dot"></div> Ten questions</div>
-            <div class="meta-item"><div class="meta-dot"></div> Around eight minutes</div>
-            <div class="meta-item"><div class="meta-dot"></div> Your pattern identified immediately</div>
-            <div class="meta-item"><div class="meta-dot"></div> A letter to follow</div>
-        </div>
+        <p class="promise-line">Ten questions. Three minutes. What comes back is the story you&rsquo;ve been living inside, where it was written, and the first words of a different one.</p>
         <div class="field-group">
             <label class="field-label" for="userName">Your first name</label>
             <input class="field-input" type="text" id="userName" placeholder="Enter your name" autocomplete="given-name">
@@ -423,10 +451,6 @@
             <div class="nextstep-eyebrow">Your Next Step</div>
             <div class="nextstep-title">Your Knight in Shining Armour</div>
             <div class="nextstep-body" id="nextStepBody"></div>
-            <div class="proof-quote">
-                <div class="proof-quote-text">&ldquo;From our second session, I had a breakthrough that broke a fundamental idea I&rsquo;d held about myself my entire life. I feel so much more whole and calm now &mdash; and friends have noticed the change.&rdquo;</div>
-                <div class="proof-quote-attr">&mdash; S., teacher, Hong Kong</div>
-            </div>
             <div class="nextstep-cta">
                 <a class="btn-gold" id="bookLink" href="#" target="_blank" rel="noopener">Get the book on Amazon &rarr;</a>
                 <a class="discovery" id="discoveryLink" href="#" target="_blank" rel="noopener">Or book a free discovery call to go deeper &rarr;</a>
