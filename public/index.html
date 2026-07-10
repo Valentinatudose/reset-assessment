@@ -323,6 +323,26 @@
         }
         .nextstep-cta a.discovery:hover { color: var(--navy); }
 
+        /* ── FULL PROFILE DOWNLOAD ── */
+        .profile-dl {
+            background: var(--white); border: 1.5px solid var(--border); border-radius: 12px;
+            padding: 1.9rem 2.5rem; margin: 1.6rem 0 1.2rem; text-align: center;
+        }
+        .profile-dl .pd-eyebrow {
+            font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+            color: var(--gold); font-weight: 600; margin-bottom: 0.7rem;
+        }
+        .profile-dl .pd-title {
+            font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--navy); margin-bottom: 0.6rem;
+        }
+        .profile-dl .pd-body { font-size: 0.94rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 1.4rem; max-width: 520px; margin-left: auto; margin-right: auto; }
+        .profile-dl a.pd-btn {
+            display: inline-block; background: var(--navy); color: var(--white);
+            padding: 0.95rem 2.2rem; border-radius: 8px; font-size: 1rem; font-weight: 600;
+            text-decoration: none; letter-spacing: 0.02em; transition: background 0.2s, transform 0.1s;
+        }
+        .profile-dl a.pd-btn:hover { background: var(--navy-mid); transform: translateY(-1px); }
+
 
         /* ── FOOTER ── */
         .site-footer {
@@ -436,6 +456,14 @@
             </div>
             <div class="share-status" id="shareStatus"></div>
             <div class="misunderstood-note" id="misunderstoodNote"></div>
+        </div>
+
+        <!-- Full profile download -->
+        <div class="profile-dl">
+            <div class="pd-eyebrow">Your full profile</div>
+            <div class="pd-title" id="pdTitle">Take your pattern with you</div>
+            <div class="pd-body">A deeper version of everything here &mdash; where your pattern began, why insight alone hasn&rsquo;t shifted it, and a practice to begin working with it. Yours to keep, and to return to.</div>
+            <a class="pd-btn" id="profileDownload" href="#" download>Download your full profile (PDF) &darr;</a>
         </div>
 
         <!-- Next Step -->
@@ -807,6 +835,12 @@ async function submitAndShowResults() {
     const utm = `utm_source=assessment&utm_medium=result&utm_campaign=${dom.tag}`;
     document.getElementById('bookLink').href = `${AMAZON_URL}?${utm}`;
     document.getElementById('discoveryLink').href = `${CALENDLY_URL}?${utm}`;
+
+    // Full profile PDF — resolves by archetype tag (served from /profiles/<tag>.pdf)
+    const profileEl = document.getElementById('profileDownload');
+    profileEl.href = `/profiles/${dom.tag}.pdf`;
+    profileEl.setAttribute('download', `RESET Profile - ${dom.name}.pdf`);
+    document.getElementById('pdTitle').textContent = `Your ${dom.name.replace(/^The /, '')} profile, in full`;
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
