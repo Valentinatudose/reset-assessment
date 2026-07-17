@@ -382,6 +382,16 @@
     src="https://www.facebook.com/tr?id=1336311913884631&ev=PageView&noscript=1"
     /></noscript>
     <!-- End Meta Pixel Code -->
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18330519750"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'AW-18330519750');
+    </script>
+    <!-- End Google tag -->
 </head>
 <body>
 
@@ -737,6 +747,7 @@ function startAssessment() {
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { alert('Please enter a valid email address.'); return; }
     userData = { name, email };
     if (typeof fbq !== 'undefined') fbq('trackCustom', 'AssessmentStart');
+    if (typeof gtag !== 'undefined') gtag('event', 'assessment_start');
     document.getElementById('welcomeScreen').style.display = 'none';
     document.getElementById('assessmentScreen').style.display = 'block';
     renderQuestion(0);
@@ -828,6 +839,7 @@ async function submitAndShowResults() {
     const sec = resultKeys.secondary ? archetypes[resultKeys.secondary] : null;
 
     if (typeof fbq !== 'undefined') fbq('trackCustom', 'AssessmentComplete');
+    if (typeof gtag !== 'undefined') gtag('event', 'assessment_complete');
     document.getElementById('assessmentScreen').style.display = 'none';
     document.getElementById('resultsScreen').style.display = 'block';
 
@@ -913,6 +925,9 @@ async function submitAndShowResults() {
             })
         });
         if (typeof fbq !== 'undefined') fbq('track', 'Lead');
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'conversion', {'send_to': 'AW-18330519750/vOrdCPiultIcEMaR1qRE'});
+        }
     } catch (err) {
         console.log('Mailchimp error:', err);
     }
