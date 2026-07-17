@@ -365,6 +365,23 @@
             .headline-turn { font-size: 0.88em; }
         }
     </style>
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1336311913884631');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1336311913884631&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
 </head>
 <body>
 
@@ -719,6 +736,7 @@ function startAssessment() {
     if (!name || !email) { alert('Please enter your name and email to begin.'); return; }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { alert('Please enter a valid email address.'); return; }
     userData = { name, email };
+    if (typeof fbq !== 'undefined') fbq('trackCustom', 'AssessmentStart');
     document.getElementById('welcomeScreen').style.display = 'none';
     document.getElementById('assessmentScreen').style.display = 'block';
     renderQuestion(0);
@@ -809,6 +827,7 @@ async function submitAndShowResults() {
     const dom = archetypes[resultKeys.dominant];
     const sec = resultKeys.secondary ? archetypes[resultKeys.secondary] : null;
 
+    if (typeof fbq !== 'undefined') fbq('trackCustom', 'AssessmentComplete');
     document.getElementById('assessmentScreen').style.display = 'none';
     document.getElementById('resultsScreen').style.display = 'block';
 
@@ -893,6 +912,7 @@ async function submitAndShowResults() {
                 }
             })
         });
+        if (typeof fbq !== 'undefined') fbq('track', 'Lead');
     } catch (err) {
         console.log('Mailchimp error:', err);
     }
