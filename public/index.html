@@ -543,6 +543,37 @@ const AD_HEADLINES = {
     } catch (e) { /* default headline stays */ }
 })();
 
+// ══ SOURCE / UTM CAPTURE ══
+// Captures how this visitor arrived, once, on page load. Persists in memory for the
+// whole assessment (single-page flow, no reload) and is sent with every lead.
+const sourceData = (function captureSource() {
+    try {
+        const params = new URLSearchParams(window.location.search);
+        const utmSource = params.get('utm_source') || '';
+        const utmMedium = params.get('utm_medium') || '';
+        const utmCampaign = params.get('utm_campaign') || '';
+        const utmContent = params.get('utm_content') || '';
+        const utmTerm = params.get('utm_term') || '';
+        const adVariant = params.get('h') || '';
+        const referrer = document.referrer || '';
+
+        // Best-guess single "channel" label for quick reading in Sheets/Mailchimp
+        let channel = 'direct';
+        if (utmSource) {
+            channel = utmSource;
+        } else if (referrer) {
+            try {
+                const refHost = new URL(referrer).hostname.replace(/^www\./, '');
+                channel = refHost;
+            } catch (e) { channel = 'referral'; }
+        }
+
+        return { utmSource, utmMedium, utmCampaign, utmContent, utmTerm, adVariant, referrer, channel };
+    } catch (e) {
+        return { utmSource: '', utmMedium: '', utmCampaign: '', utmContent: '', utmTerm: '', adVariant: '', referrer: '', channel: 'unknown' };
+    }
+})();
+
 // ══ ARCHETYPE KEYS ══ DIS=Disconnected, OVG=Over-Giver, CON=Controller, PLE=People-Pleaser, SPL=Splitter
 
 // ══ QUESTIONS (10) ══ each option scores +1 toward one archetype (.a)
@@ -898,7 +929,15 @@ async function submitAndShowResults() {
         secondaryTag: sec ? sec.tag : '',
         scores: JSON.stringify(resultKeys.scores),
         responses: JSON.stringify(answerText),
-        profile: JSON.stringify({ dominant: dom.name, dominantTag: dom.tag, secondary: sec ? sec.name : '', secondaryTag: sec ? sec.tag : '' })
+        profile: JSON.stringify({ dominant: dom.name, dominantTag: dom.tag, secondary: sec ? sec.name : '', secondaryTag: sec ? sec.tag : '' }),
+        channel: sourceData.channel,
+        utmSource: sourceData.utmSource,
+        utmMedium: sourceData.utmMedium,
+        utmCampaign: sourceData.utmCampaign,
+        utmContent: sourceData.utmContent,
+        utmTerm: sourceData.utmTerm,
+        adVariant: sourceData.adVariant,
+        referrer: sourceData.referrer
     };
     fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST', mode: 'no-cors',
@@ -915,12 +954,15 @@ async function submitAndShowResults() {
                 email: userData.email,
                 firstName,
                 lastName,
-                tags: [dom.tag, 'assessment-completed'],
+                tags: [dom.tag, 'assessment-completed', 'channel-' + sourceData.channel.replace(/[^a-z0-9]/gi, '-').toLowerCase()],
                 mergeFields: {
                     FNAME: firstName,
                     LNAME: lastName,
                     PATTERN: dom.name,
-                    SECONDARY: sec ? sec.name : ''
+                    SECONDARY: sec ? sec.name : '',
+                    UTMSRC: sourceData.utmSource,
+                    UTMMED: sourceData.utmMedium,
+                    UTMCAMP: sourceData.utmCampaign
                 }
             })
         });
