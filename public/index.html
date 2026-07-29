@@ -452,24 +452,24 @@
     <!-- ══ RESULTS SCREEN ══ -->
     <div id="resultsScreen">
         <div class="results-hero">
-            <div class="results-eyebrow">Your Dominant Pattern</div>
+            <div class="results-eyebrow" id="resultsEyebrow">Your Dominant Pattern</div>
             <div class="results-pattern-name" id="patternName">&mdash;</div>
             <div class="results-headline" id="patternHeadline">&mdash;</div>
             <div class="results-secondary" id="patternSecondary" style="display:none;"></div>
         </div>
 
-        <div class="results-card">
+        <div class="results-card" id="mirrorCard">
             <div class="results-card-label">The Mirror</div>
             <div class="results-card-body" id="patternMirror"></div>
         </div>
 
-        <div class="results-card">
+        <div class="results-card" id="reframeCard">
             <div class="results-card-label">The Reframe</div>
             <div class="results-card-body" id="patternReframe"></div>
         </div>
 
         <!-- Declaration Card -->
-        <div class="declaration-section">
+        <div class="declaration-section" id="declarationSection">
             <div class="declaration-intro">Your Declaration &mdash; yours to share</div>
             <div class="declaration-card" id="declarationCard">
                 <div class="dc-line1" id="dcLine1"></div>
@@ -486,7 +486,7 @@
         </div>
 
         <!-- Full profile download -->
-        <div class="profile-dl">
+        <div class="profile-dl" id="profileBlock">
             <div class="pd-eyebrow">Your full profile</div>
             <div class="pd-title" id="pdTitle">Take your pattern with you</div>
             <div class="pd-body">A deeper version of everything here &mdash; where your pattern began, why insight alone hasn&rsquo;t shifted it, and a practice to begin working with it. Yours to keep, and to return to.</div>
@@ -853,7 +853,8 @@ function goBack() {
 }
 
 // ══ SCORING ══
-const SECURE_THRESHOLD = 6; // secure answers at or above this → secure-baseline framing (tunable)
+const PATTERN_FLOOR = 3;            // a pattern is crowned only if it reaches this many answers
+const MIN_SECURE_FOR_BASELINE = 4;  // ...and a 'secure' result is only shown if at least this many answers were secure
 
 function computeResult() {
     const scores = { DIS: 0, OVG: 0, CON: 0, PLE: 0, SPL: 0 };
@@ -882,8 +883,10 @@ function computeResult() {
         }
     }
 
-    // Floor rule: mostly-secure respondents get secure-baseline framing (and no forced secondary).
-    const secureBaseline = secureCount >= SECURE_THRESHOLD;
+    // Floor rule: a pattern is crowned only if it clearly leads (>= PATTERN_FLOOR answers).
+    // If nothing clears the floor AND enough answers were secure, it is a secure result.
+    // (The secure guard stops a scattered, all-wounded taker being mislabelled 'secure'.)
+    const secureBaseline = topScore < PATTERN_FLOOR && secureCount >= MIN_SECURE_FOR_BASELINE;
 
     // Edge case: fully secure, no wound signal at all (10/10). Route to a default lean so the
     // funnel still delivers a profile. TODO(Valentina): confirm default for a 10/10-secure taker.
@@ -906,24 +909,53 @@ function computeResult() {
 async function submitAndShowResults() {
     const dom = archetypes[resultKeys.dominant];
     const sec = resultKeys.secondary ? archetypes[resultKeys.secondary] : null;
+    const secureBaseline = resultKeys.secureBaseline;
+    const outTag = secureBaseline ? '' : dom.tag;            // wound tag withheld for secure takers
+    const outPattern = secureBaseline ? 'Secure baseline' : dom.name;
 
     if (typeof fbq !== 'undefined') fbq('trackCustom', 'AssessmentComplete');
     if (typeof gtag !== 'undefined') gtag('event', 'assessment_complete');
     document.getElementById('assessmentScreen').style.display = 'none';
     document.getElementById('resultsScreen').style.display = 'block';
 
-    document.getElementById('patternName').innerHTML = dom.name;
-    document.getElementById('patternHeadline').innerHTML = dom.headline;
-
+    const eyebrowEl = document.getElementById('resultsEyebrow');
     const secEl = document.getElementById('patternSecondary');
+    const topScore = resultKeys.scores[resultKeys.dominant] || 0;
+
     if (resultKeys.secureBaseline) {
-        secEl.innerHTML = `Before the pattern, the thing worth saying first: you already move through a lot of this securely. Most people who take this are carried by one clear pattern. You are not. The thread that showed up most for you is <strong>${dom.name}</strong> &mdash; real, and worth reading even if it&rsquo;s a pattern you&rsquo;ve already worked on, because what feels secure can also be a defence that has simply gone quiet.`;
+        // Secure result: lead with security, never crown a wound pattern.
+        eyebrowEl.textContent = 'Your Result';
+        document.getElementById('patternName').innerHTML = 'You&rsquo;re secure here.';
+        document.getElementById('patternHeadline').innerHTML = 'Most people who take this are run by one clear pattern. You are not &mdash; and that is the rarest result this assessment gives.';
+
+        if (topScore >= 1) {
+            secEl.innerHTML = `If you want the fine print: the lightest thread that showed up was <strong>${dom.name}</strong> &mdash; but a lean this small is a trace, not a pattern. It doesn&rsquo;t run you. Read its profile below only if you&rsquo;re curious, remembering that what feels secure can also hold a defence that has simply gone quiet.`;
+        } else {
+            secEl.innerHTML = `Nothing leaned strongly enough to name &mdash; which almost never happens here. Take the win.`;
+        }
         secEl.style.display = 'block';
-    } else if (sec) {
-        secEl.innerHTML = `You may also recognise yourself in <strong>${sec.name}</strong>. Most women carry more than one pattern. There is almost always a dominant theme &mdash; and yours is ${dom.name}.`;
-        secEl.style.display = 'block';
+
+        // Suppress the wound-specific sections for a secure taker.
+        document.getElementById('mirrorCard').style.display = 'none';
+        document.getElementById('reframeCard').style.display = 'none';
+        document.getElementById('declarationSection').style.display = 'none';
+
+        // Profile download stays only as optional curiosity, and only when a lean exists.
+        if (topScore >= 1) {
+            document.getElementById('pdTitle').innerHTML = 'Your lightest lean, if you&rsquo;re curious';
+        } else {
+            document.getElementById('profileBlock').style.display = 'none';
+        }
     } else {
-        secEl.style.display = 'none';
+        eyebrowEl.textContent = 'Your Dominant Pattern';
+        document.getElementById('patternName').innerHTML = dom.name;
+        document.getElementById('patternHeadline').innerHTML = dom.headline;
+        if (sec) {
+            secEl.innerHTML = `You may also recognise yourself in <strong>${sec.name}</strong>. Most women carry more than one pattern. There is almost always a dominant theme &mdash; and yours is ${dom.name}.`;
+            secEl.style.display = 'block';
+        } else {
+            secEl.style.display = 'none';
+        }
     }
 
     document.getElementById('patternMirror').innerHTML = dom.mirror.map(p => `<p>${p}</p>`).join('');
@@ -964,13 +996,13 @@ async function submitAndShowResults() {
         userName: userData.name,
         userEmail: userData.email,
         primaryThreshold: 'assessment-v3-archetypes',
-        dominantPattern: dom.name,
-        dominantTag: dom.tag,
+        dominantPattern: outPattern,
+        dominantTag: outTag,
         secondaryPattern: sec ? sec.name : '',
         secondaryTag: sec ? sec.tag : '',
         scores: JSON.stringify(resultKeys.scores),
         responses: JSON.stringify(answerText),
-        profile: JSON.stringify({ dominant: dom.name, dominantTag: dom.tag, secondary: sec ? sec.name : '', secondaryTag: sec ? sec.tag : '' }),
+        profile: JSON.stringify({ dominant: outPattern, dominantTag: outTag, secondary: sec ? sec.name : '', secondaryTag: sec ? sec.tag : '' }),
         channel: sourceData.channel,
         utmSource: sourceData.utmSource,
         utmMedium: sourceData.utmMedium,
@@ -995,11 +1027,13 @@ async function submitAndShowResults() {
                 email: userData.email,
                 firstName,
                 lastName,
-                tags: [dom.tag, 'assessment-completed', 'channel-' + sourceData.channel.replace(/[^a-z0-9]/gi, '-').toLowerCase()].concat(resultKeys.secureBaseline ? ['secure-baseline'] : []),
+                tags: (secureBaseline
+                    ? ['assessment-completed', 'channel-' + sourceData.channel.replace(/[^a-z0-9]/gi, '-').toLowerCase(), 'secure-baseline']
+                    : [dom.tag, 'assessment-completed', 'channel-' + sourceData.channel.replace(/[^a-z0-9]/gi, '-').toLowerCase()]),
                 mergeFields: {
                     FNAME: firstName,
                     LNAME: lastName,
-                    PATTERN: dom.name,
+                    PATTERN: outPattern,
                     SECONDARY: sec ? sec.name : '',
                     UTMSRC: sourceData.utmSource,
                     UTMMED: sourceData.utmMedium,
