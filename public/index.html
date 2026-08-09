@@ -975,7 +975,9 @@ async function submitAndShowResults() {
     const profileEl = document.getElementById('profileDownload');
     profileEl.href = `/profiles/${dom.tag}.pdf`;
     profileEl.setAttribute('download', `RESET Profile - ${dom.name}.pdf`);
-    document.getElementById('pdTitle').textContent = `Your ${dom.name.replace(/^The /, '')} profile, in full`;
+    if (!secureBaseline) {
+        document.getElementById('pdTitle').textContent = `Your ${dom.name.replace(/^The /, '')} profile, in full`;
+    }
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
