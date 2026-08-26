@@ -516,6 +516,7 @@
 <script>
 // ══ CONFIG ══
 const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzsapU-uLakNqNCrryxEALmUPyNHqCr2rFreuhWIdxu-ij1V8VsY7yDxBiSBxFhhADn/exec';
+    const FORM_TOKEN = '1c03fd79-ed92-4478-8671-453acb4dac3b'
 const ASSESSMENT_URL = 'reset.happyeverafter.asia';
 const AMAZON_URL = 'https://www.amazon.com/dp/B0GSQ6VSMF';
 const CALENDLY_URL = 'https://calendly.com/valentina-tudose/new-meeting';
@@ -1017,7 +1018,7 @@ async function submitAndShowResults() {
     fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST', mode: 'no-cors',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(sheetsPayload)
+        body: JSON.stringify({ ...sheetsPayload, token: FORM_TOKEN })
     }).catch(err => console.log('Sheets error:', err));
 
     // 2. Mailchimp via Vercel API — tag dominant archetype (sequences activate later)
