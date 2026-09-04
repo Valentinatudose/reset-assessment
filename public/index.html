@@ -522,6 +522,14 @@ const AMAZON_URL = 'https://www.amazon.com/dp/B0GSQ6VSMF';
 const CALENDLY_URL = 'https://calendly.com/valentina-tudose/new-meeting';
 const SHARE_CAPTION = 'Just took an assessment that finally explained something I\u2019ve never been able to put into words. Link in Valentina\u2019s bio if you want yours \u2014 reset.happyeverafter.asia';
 
+// Mailchimp tag that hands a subscriber to the weekly newsletter journey.
+// Must match the existing tag string in Mailchimp EXACTLY (underscore, not space).
+const NEWSLETTER_TAG = 'nurture_newsletter';
+
+// Next-step copy for a secure-baseline taker. Never references an archetype,
+// because no archetype was named for this result.
+const SECURE_NEXT_STEP = 'This assessment can tell you that no pattern is running you. What it can&rsquo;t show you is how one gets built in the first place, or why it holds for decades in people who can describe it perfectly and still repeat it. That&rsquo;s what the book is for: the five patterns in full, where each one begins, and what it takes to change one.';
+
 // ══ MATCHED AD HEADLINES ══
 // Each test ad links with ?h=1..5 so the landing headline finishes the ad's sentence.
 // No parameter (direct/organic traffic) keeps the default headline already in the markup.
@@ -929,11 +937,9 @@ async function submitAndShowResults() {
         document.getElementById('patternName').innerHTML = 'You&rsquo;re secure here.';
         document.getElementById('patternHeadline').innerHTML = 'Most people who take this are run by one clear pattern. You are not &mdash; and that is the rarest result this assessment gives.';
 
-        if (topScore >= 1) {
-            secEl.innerHTML = `If you want the fine print: the lightest thread that showed up was <strong>${dom.name}</strong> &mdash; but a lean this small is a trace, not a pattern. It doesn&rsquo;t run you. Read its profile below only if you&rsquo;re curious, remembering that what feels secure can also hold a defence that has simply gone quiet.`;
-        } else {
-            secEl.innerHTML = `Nothing leaned strongly enough to name &mdash; which almost never happens here. Take the win.`;
-        }
+        // Never name an archetype here. Below the floor the leader is often decided by a
+        // tie-break, not by the data, so naming one would present an accident as a finding.
+        secEl.innerHTML = 'If you want the fine print: no single pattern came through with enough weight to name. What showed up was the faintest trace across several of them, at much the same level &mdash; which is another way of saying none of them is running you.';
         secEl.style.display = 'block';
 
         // Suppress the wound-specific sections for a secure taker.
@@ -941,12 +947,8 @@ async function submitAndShowResults() {
         document.getElementById('reframeCard').style.display = 'none';
         document.getElementById('declarationSection').style.display = 'none';
 
-        // Profile download stays only as optional curiosity, and only when a lean exists.
-        if (topScore >= 1) {
-            document.getElementById('pdTitle').innerHTML = 'Your lightest lean, if you&rsquo;re curious';
-        } else {
-            document.getElementById('profileBlock').style.display = 'none';
-        }
+        // No archetype was named, so there is no profile PDF to offer. The book is the next step.
+        document.getElementById('profileBlock').style.display = 'none';
     } else {
         eyebrowEl.textContent = 'Your Dominant Pattern';
         document.getElementById('patternName').innerHTML = dom.name;
@@ -965,18 +967,23 @@ async function submitAndShowResults() {
     document.getElementById('dcLine1').innerHTML = dom.dcLine1;
     document.getElementById('dcLine2').innerHTML = dom.dcLine2;
     document.getElementById('misunderstoodNote').innerHTML = dom.misunderstood;
-    document.getElementById('nextStepBody').innerHTML = dom.nextStep;
+
+    // Next step: archetype copy for a named pattern, secure copy otherwise.
+    // (Without this branch the book block inherits the tie-broken archetype's wording.)
+    document.getElementById('nextStepBody').innerHTML = secureBaseline ? SECURE_NEXT_STEP : dom.nextStep;
 
     // UTM-tagged ecosystem links
-    const utm = `utm_source=assessment&utm_medium=result&utm_campaign=${dom.tag}`;
+    const linkTag = secureBaseline ? 'secure-baseline' : dom.tag;
+    const utm = `utm_source=assessment&utm_medium=result&utm_campaign=${linkTag}`;
     document.getElementById('bookLink').href = `${AMAZON_URL}?${utm}`;
     document.getElementById('discoveryLink').href = `${CALENDLY_URL}?${utm}`;
 
-    // Full profile PDF — resolves by archetype tag (served from /profiles/<tag>.pdf)
-    const profileEl = document.getElementById('profileDownload');
-    profileEl.href = `/profiles/${dom.tag}.pdf`;
-    profileEl.setAttribute('download', `RESET Profile - ${dom.name}.pdf`);
+    // Full profile PDF — resolves by archetype tag (served from /profiles/<tag>.pdf).
+    // Skipped entirely for a secure result: no archetype named, no archetype PDF.
     if (!secureBaseline) {
+        const profileEl = document.getElementById('profileDownload');
+        profileEl.href = `/profiles/${dom.tag}.pdf`;
+        profileEl.setAttribute('download', `RESET Profile - ${dom.name}.pdf`);
         document.getElementById('pdTitle').textContent = `Your ${dom.name.replace(/^The /, '')} profile, in full`;
     }
 
@@ -1021,7 +1028,9 @@ async function submitAndShowResults() {
         body: JSON.stringify({ ...sheetsPayload, token: FORM_TOKEN })
     }).catch(err => console.log('Sheets error:', err));
 
-    // 2. Mailchimp via Vercel API — tag dominant archetype (sequences activate later)
+    // 2. Mailchimp via Vercel API — tag dominant archetype (sequences activate later).
+    //    Secure takers have no archetype sequence to enter, so they are handed straight
+    //    to the weekly newsletter journey via NEWSLETTER_TAG.
     try {
         await fetch('/api/subscribe', {
             method: 'POST',
@@ -1031,7 +1040,7 @@ async function submitAndShowResults() {
                 firstName,
                 lastName,
                 tags: (secureBaseline
-                    ? ['assessment-completed', 'channel-' + sourceData.channel.replace(/[^a-z0-9]/gi, '-').toLowerCase(), 'secure-baseline']
+                    ? ['assessment-completed', 'channel-' + sourceData.channel.replace(/[^a-z0-9]/gi, '-').toLowerCase(), 'secure-baseline', NEWSLETTER_TAG]
                     : [dom.tag, 'assessment-completed', 'channel-' + sourceData.channel.replace(/[^a-z0-9]/gi, '-').toLowerCase()]),
                 mergeFields: {
                     FNAME: firstName,
@@ -1052,8 +1061,8 @@ async function submitAndShowResults() {
         console.log('Mailchimp error:', err);
     }
 
-    // Pre-render the shareable card image
-    renderCardImage();
+    // Pre-render the shareable card image (skipped for secure — no declaration shown)
+    if (!secureBaseline) renderCardImage();
 }
 
 function stripTags(html) {
