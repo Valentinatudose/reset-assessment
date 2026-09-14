@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RESET Live — the waitlist</title>
+<meta name="description" content="RESET Live: the RESET Method as a small group programme over eight weeks, from February 2027. Join the waitlist.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#091e35;
+  --navy-deep:#0c2742;
+  --navy-mid:#1E4976;
+  --cream:#FAF8F5;
+  --offwhite:#f7f5f1;
+  --gold:#C9A061;
+  --gold-light:#d4b070;
+  --border:#E5DDD5;
+  --text:#2C3E50;
+  --text-muted:#6B7280;
+  --white:#ffffff;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:'DM Sans',sans-serif;
+  font-weight:300;
+  background:var(--white);
+  color:var(--text);
+  line-height:1.75;
+  font-size:18px;
+  text-align:center;
+}
+.wrap{max-width:760px;margin:0 auto;padding:0 28px}
+.narrow{max-width:660px;margin:0 auto}
+
+/* ---------- credentials bar ---------- */
+.credbar{background:var(--navy);padding:26px 0}
+.creds{
+  display:flex;justify-content:center;flex-wrap:wrap;
+  gap:20px 54px;max-width:1100px;margin:0 auto;padding:0 24px;
+}
+.cred .num{
+  font-family:'Playfair Display',serif;
+  font-weight:700;font-size:26px;color:var(--gold);line-height:1.2;
+}
+.cred .lbl{
+  font-size:11.5px;letter-spacing:.13em;color:#a9b6c4;
+  text-transform:uppercase;margin-top:3px;font-weight:400;
+}
+
+/* ---------- brandbar ---------- */
+.brandbar{background:var(--white);padding:22px 0;border-bottom:1px solid var(--border)}
+.brand{
+  font-family:'Playfair Display',serif;
+  font-size:25px;font-weight:700;color:var(--navy);letter-spacing:.01em;
+}
+.brand em{font-style:italic;font-weight:600;color:var(--gold)}
+.brand sup{font-size:11px;vertical-align:super;font-weight:400}
+
+/* ---------- hero ---------- */
+.hero{background:var(--navy);color:var(--cream);padding:84px 0 82px}
+.eyebrow{
+  font-size:12px;letter-spacing:.17em;color:var(--gold);
+  text-transform:uppercase;font-weight:500;margin-bottom:30px;
+}
+h1{
+  font-family:'Playfair Display',serif;font-weight:700;
+  font-size:clamp(31px,5.2vw,50px);line-height:1.16;
+  color:var(--white);letter-spacing:-.015em;
+}
+h1 .second{
+  display:block;margin-top:20px;
+  font-family:'Playfair Display',serif;font-style:italic;font-weight:400;
+  font-size:clamp(21px,3.2vw,31px);line-height:1.36;color:var(--gold);
+  letter-spacing:0;
+}
+
+/* ---------- sections ---------- */
+section{padding:62px 0}
+.alt{background:var(--offwhite)}
+p{margin-bottom:1.2em}
+p:last-child{margin-bottom:0}
+h2{
+  font-family:'Playfair Display',serif;font-weight:700;
+  font-size:clamp(25px,3.4vw,33px);line-height:1.24;
+  color:var(--navy);margin-bottom:30px;letter-spacing:-.01em;
+}
+.kicker{
+  font-size:12px;letter-spacing:.17em;color:var(--gold);
+  text-transform:uppercase;font-weight:500;margin-bottom:18px;
+}
+
+/* ---------- pull quote ---------- */
+.pull{background:var(--offwhite);padding:56px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.pull p{
+  font-family:'Playfair Display',serif;font-style:italic;font-weight:400;
+  font-size:clamp(20px,2.8vw,27px);line-height:1.44;color:var(--navy-mid);
+  max-width:720px;margin:0 auto;
+}
+
+/* ---------- personal note ---------- */
+.note{background:var(--navy);color:#dde4ea;padding:70px 0}
+.note h2{color:var(--white)}
+.note .kicker{color:var(--gold)}
+.note p{font-size:17.5px}
+
+/* ---------- practical ---------- */
+.detail{
+  max-width:520px;margin:0 auto 32px;text-align:left;
+  border-top:1px solid var(--border);
+}
+.row{
+  display:grid;grid-template-columns:112px 1fr;gap:22px;
+  padding:17px 0;border-bottom:1px solid var(--border);
+}
+.row dt{color:var(--text-muted);font-weight:400;font-size:16px;line-height:1.6}
+.row dd{color:var(--navy);font-weight:500;font-size:17px;line-height:1.55}
+.sub{display:block;font-size:15px;color:var(--text-muted);font-weight:400;margin-top:5px;line-height:1.6}
+
+/* ---------- form ---------- */
+.signup{background:var(--navy-deep);color:var(--cream);padding:72px 0 80px}
+.signup h2{color:var(--white)}
+.signup p{color:#c3ccd6}
+form{max-width:400px;margin:32px auto 0}
+.field{margin-bottom:16px;text-align:left}
+label{
+  display:block;font-size:12px;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:8px;font-weight:500;
+}
+input[type=text],input[type=email]{
+  width:100%;padding:14px 16px;
+  font-family:'DM Sans',sans-serif;font-size:17px;font-weight:300;
+  color:var(--navy);background:var(--white);
+  border:1px solid transparent;border-radius:2px;
+}
+input:focus-visible,button:focus-visible{outline:2px solid var(--gold-light);outline-offset:3px}
+button{
+  width:100%;margin-top:10px;padding:16px 30px;
+  font-family:'DM Sans',sans-serif;font-size:17px;font-weight:500;
+  color:var(--navy);background:var(--gold);
+  border:none;border-radius:2px;cursor:pointer;transition:background .18s ease;
+}
+button:hover{background:var(--gold-light)}
+button[disabled]{opacity:.55;cursor:default}
+.fineprint{font-size:15px;margin-top:24px;color:#9fadba;max-width:460px;margin-left:auto;margin-right:auto}
+.msg{margin-top:18px;font-size:16.5px;display:none;max-width:440px;margin-left:auto;margin-right:auto}
+.msg.show{display:block}
+.msg.error{color:var(--gold-light)}
+
+footer{padding:32px 0 44px;font-size:14px;color:var(--text-muted)}
+
+@media (max-width:640px){
+  body{font-size:17px}
+  .creds{gap:18px 34px}
+  .cred .num{font-size:21px}
+  .cred .lbl{font-size:10.5px;letter-spacing:.1em}
+  .hero{padding:58px 0 56px}
+  section{padding:48px 0}
+  .note{padding:54px 0}
+  .row{grid-template-columns:1fr;gap:2px;padding:14px 0}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<div class="credbar">
+  <div class="creds">
+    <div class="cred"><div class="num">12+</div><div class="lbl">Years practice</div></div>
+    <div class="cred"><div class="num">1,000+</div><div class="lbl">Clients worldwide</div></div>
+    <div class="cred"><div class="num">4</div><div class="lbl">Continents</div></div>
+    <div class="cred"><div class="num">100K+</div><div class="lbl">TEDx views</div></div>
+    <div class="cred"><div class="num">5-Stage</div><div class="lbl">RESET Method™</div></div>
+  </div>
+</div>
+
+<div class="brandbar">
+  <div class="wrap"><div class="brand">RESET <em>Method</em><sup>™</sup></div></div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">RESET Live · A small group programme · February 2027</p>
+    <h1>
+      You've tried everything to make it stop.
+      <span class="second">But knowing your pattern and changing it are two different things.</span>
+    </h1>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <div class="wrap"><div class="narrow">
+    <p>You've talked it through, you journalled about it, you repeated affirmations that were supposed to help. You've had sessions where something landed and you thought, finally — and eleven weeks later you were doing the same thing with a different person.</p>
+    <p>So you did more. Another book, another practitioner, another six months of being extremely honest with yourself. You got better at describing what you do, and no better at not doing it.</p>
+    <p>That isn't because you've not tried hard enough or chose the wrong therapist. The decision underneath it was made long before you had words for anything, and words don't reach it. Everything you've tried has been aimed one level too high.</p>
+  </div></div>
+</section>
+
+<div class="pull">
+  <div class="wrap">
+    <p>Changing it is a different job — and it is the one I have done with more than a thousand women over twelve years.</p>
+  </div>
+</div>
+
+<section>
+  <div class="wrap"><div class="narrow">
+    <p class="kicker">The programme</p>
+    <h2>RESET Live is the method, run as a small group.</h2>
+    <p>Eight weeks, one live session a week, from February 2027 — the same five stages and the same sequence I use one to one.</p>
+    <p>It uses three approaches, and the reason it works differently is that they run together rather than separately.</p>
+    <p>Coaching gets the conscious map: what you believe, what you want, what you can actually observe yourself doing. NLP gets the working parts: what sets it off, what it does, how it keeps proving itself right. Hypnotherapy goes to the level where the original decision was made, which is the only level where it can be changed.</p>
+    <p>Any one of these on its own gives you something real and then stops. You've probably met at least two of them already. Understanding without the mechanism leaves you articulate and stuck. The mechanism without the emotional layer gives you a better behaviour you can hold for about three months. The emotional work without a map leaves you moved and unsure what moved.</p>
+    <p>Used in sequence, each one prepares the next. You can't change a decision you can't reach, and you can't reach it without knowing what you're looking for. That sequence is the method — and it's the honest answer to why therapy helped and something still isn't finished.</p>
+    <p>The hypnosis is done live, with me, in the room. Not recorded. That's the part that only works live, and it's why this is a group and not a course.</p>
+  </div></div>
+</section>
+
+<section class="note">
+  <div class="wrap"><div class="narrow">
+    <p class="kicker">Valentina Tudose</p>
+    <h2>I created this method the hard way.</h2>
+    <p>For years I could describe my own pattern perfectly. I was the capable one. I never asked, never let anyone see me struggle, didn't know how to ask for help. It almost killed me — I survived six days with a burst appendix rather than make a fuss. I tried my best to change it, and I did it anyway. Not once. For years, with full understanding.</p>
+    <p>What I didn't know was that I needed to find when I made the decision, and why. I had no memory of any moment that would justify it. Not repressed in any dramatic sense — just gone, the way most of these are, filed as unimportant by a child with no idea she was deciding something that would outlast everything.</p>
+    <p>At forty-two I retrieved that memory in a hypnotherapy session. A maths test at fourteen, a public failure, and a rule I wrote that afternoon about never being the one who needs. Nothing to do with love. The rule didn't care.</p>
+    <p>It didn't change because I could recognise the pattern. It changed when I could reach the moment it was made — and that's what the hypnosis is for.</p>
+  </div></div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <p class="kicker">The practical part</p>
+    <h2>Eight weeks, February to April 2027.</h2>
+    <dl class="detail">
+      <div class="row"><dt>When</dt><dd>Sundays, 8am UK<span class="sub">9am Paris · 4pm Hong Kong · 7pm Sydney · 9pm New Zealand</span></dd></div>
+      <div class="row"><dt>How long</dt><dd>90 minutes a week, eight weeks</dd></div>
+      <div class="row"><dt>Dates</dt><dd>21 February to 18 April 2027<span class="sub">Onboarding the week of 15 February. A break week at Easter.</span></dd></div>
+      <div class="row"><dt>Size</dt><dd>A small group — I'll fix the number before enrolment opens</dd></div>
+      <div class="row"><dt>Price</dt><dd>Not yet fixed<span class="sub">Well below what I charge one to one. The waitlist will know before anyone else.</span></dd></div>
+    </dl>
+    <div class="narrow"><p>Sessions are recorded if you miss one, though live is where the work happens.</p></div>
+  </div>
+</section>
+
+</main>
+
+<section class="signup" id="join">
+  <div class="wrap">
+    <div id="formBlock">
+      <h2>Join the waitlist</h2>
+      <div class="narrow"><p>Enrolment opens to this list in January, before anyone else hears about it.</p></div>
+      <form id="waitlistForm" novalidate>
+        <div class="field">
+          <label for="fname">First name</label>
+          <input type="text" id="fname" name="fname" autocomplete="given-name" required>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" autocomplete="email" required>
+        </div>
+        <button type="submit" id="submitBtn">Tell me when it opens</button>
+      </form>
+      <p class="msg error" id="errorMsg" role="alert"></p>
+      <p class="fineprint">No price, no decision, nothing to do until January. One click takes your name off.</p>
+    </div>
+
+    <div id="doneBlock" style="display:none">
+      <h2>You're on the list</h2>
+      <div class="narrow"><p>You'll hear from me in January, ahead of the wider list. The weekly letter carries on as normal in the meantime.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">Valentina Tudose · Creator of the RESET Method™ · happyeverafter.asia</div>
+</footer>
+
+<script>
+(function(){
+  var params = new URLSearchParams(window.location.search);
+  var source = {
+    utmSource:   params.get('utm_source')   || '',
+    utmMedium:   params.get('utm_medium')   || '',
+    utmCampaign: params.get('utm_campaign') || '',
+    utmContent:  params.get('utm_content')  || ''
+  };
+
+  var form    = document.getElementById('waitlistForm');
+  var btn     = document.getElementById('submitBtn');
+  var errEl   = document.getElementById('errorMsg');
+  var formBlk = document.getElementById('formBlock');
+  var doneBlk = document.getElementById('doneBlock');
+
+  function showError(text){ errEl.textContent = text; errEl.classList.add('show'); }
+
+  form.addEventListener('submit', async function(e){
+    e.preventDefault();
+    errEl.classList.remove('show');
+
+    var fname = document.getElementById('fname').value.trim();
+    var email = document.getElementById('email').value.trim();
+
+    if (!fname) { showError('Please add your first name.'); return; }
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { showError('That email address looks incomplete.'); return; }
+
+    btn.disabled = true;
+    btn.textContent = 'One moment';
+
+    try {
+      var res = await fetch('/api/waitlist', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email, firstName: fname, utm: source })
+      });
+      var data = await res.json().catch(function(){ return {}; });
+      if (!res.ok || !data.success) throw new Error(data.error || 'request failed');
+
+      formBlk.style.display = 'none';
+      doneBlk.style.display = 'block';
+      doneBlk.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+    } catch (err) {
+      btn.disabled = false;
+      btn.textContent = 'Tell me when it opens';
+      showError('That didn\u2019t go through. Try once more, or email valentina@happyeverafter.asia and I\u2019ll add you by hand.');
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
