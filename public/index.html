@@ -428,6 +428,7 @@
         </div>
         <br>
         <div style="text-align:center;">
+            <p id="formError" role="alert" aria-live="assertive" style="display:none; margin:0 0 1rem 0; padding:0.75rem 1rem; border:1px solid var(--gold); border-radius:6px; color:var(--navy); background:var(--cream); font-size:0.95rem; text-align:left;"></p>
             <button class="btn-primary" onclick="startAssessment()">Discover Your Pattern &rarr;</button>
             <p style="margin-top:1rem; font-size:0.8rem; color:var(--text-muted);">Completely confidential. Your answers are never shared.</p>
         </div>
@@ -801,11 +802,34 @@ let userData = {};
 let resultKeys = { dominant: 'OVG', secondary: null };
 
 // ══ START ══
+function showFormError(msg, fieldId, reason) {
+    const box = document.getElementById('formError');
+    box.textContent = msg;
+    box.style.display = 'block';
+    const field = document.getElementById(fieldId);
+    if (field) { field.style.borderColor = 'var(--gold)'; field.focus(); }
+    // Log the failed attempt so it shows up in analytics instead of failing silently
+    if (typeof gtag !== 'undefined') gtag('event', 'assessment_form_error', { reason: reason });
+    if (typeof fbq !== 'undefined') fbq('trackCustom', 'AssessmentFormError', { reason: reason });
+}
+
 function startAssessment() {
-    const name = document.getElementById('userName').value.trim();
-    const email = document.getElementById('userEmail').value.trim();
-    if (!name || !email) { alert('Please enter your name and email to begin.'); return; }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { alert('Please enter a valid email address.'); return; }
+    const nameEl = document.getElementById('userName');
+    const emailEl = document.getElementById('userEmail');
+    const name = nameEl.value.trim();
+    // Forgive the common phone-keyboard slips: spaces (incl. non-breaking), a trailing dot
+    let email = emailEl.value.replace(/[\s ​]+/g, '').replace(/\.+$/, '');
+    emailEl.value = email;
+    document.getElementById('formError').style.display = 'none';
+    nameEl.style.borderColor = '';
+    emailEl.style.borderColor = '';
+
+    if (!name) { showFormError('Please add your first name above to begin.', 'userName', 'missing_name'); return; }
+    if (!email) { showFormError('Please add your email address above to begin.', 'userEmail', 'missing_email'); return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+        showFormError('That email address doesn’t look complete. Please check it reads like name@example.com (a comma instead of a dot is a common slip).', 'userEmail', 'invalid_email');
+        return;
+    }
     userData = { name, email };
     if (typeof fbq !== 'undefined') fbq('trackCustom', 'AssessmentStart');
     if (typeof gtag !== 'undefined') gtag('event', 'assessment_start');
