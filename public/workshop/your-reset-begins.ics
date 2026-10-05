@@ -1,0 +1,22 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Happy Ever After//Your RESET Begins//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:your-reset-begins-oct26@happyeverafter.asia
+DTSTAMP:20261005T090000Z
+DTSTART:20261030T080000Z
+DTEND:20261030T090000Z
+RRULE:FREQ=DAILY;COUNT=3
+SUMMARY:Your RESET Begins (live with Valentina)
+DESCRIPTION:Free three-day live workshop with Valentina Tudose. One hour a day on Zoom. The Zoom link arrives by email the day before. Bring a notebook\, a quiet space and headphones.
+LOCATION:Zoom (link sent by email the day before)
+URL:https://reset.happyeverafter.asia/workshop
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Your RESET Begins starts in 30 minutes
+END:VALARM
+END:VEVENT
+END:VCALENDAR
