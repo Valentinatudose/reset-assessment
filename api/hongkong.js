@@ -2,12 +2,14 @@
 // Vercel serverless function: Your RESET Begins, live in Hong Kong (12 Dec 2026) -> Mailchimp
 // Same pattern and env vars as api/waitlist.js. See the notes there on why an
 // existing contact's tag is removed and re-added (it makes "Contact tagged" fire).
-// Tags: hk-dec26 for every registration, hk-1to1 if she also asked for a session.
+// Tags: hk-dec26 for every registration, hk-1to1 if she also asked for a session,
+// and hk-pref-dec / hk-pref-jan / hk-pref-either for the date she prefers.
 
 import crypto from 'crypto';
 
 const EVENT_TAG = 'hk-dec26';
 const ONE_TO_ONE_TAG = 'hk-1to1';
+const PREF_TAGS = { dec: 'hk-pref-dec', jan: 'hk-pref-jan', either: 'hk-pref-either' };
 
 export default async function handler(req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -17,8 +19,9 @@ export default async function handler(req, res) {
     if (req.method === 'OPTIONS') return res.status(200).end();
     if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
-    const { email, firstName, oneToOne, utm } = req.body || {};
+    const { email, firstName, oneToOne, datePref, utm } = req.body || {};
     const tagNames = oneToOne ? [EVENT_TAG, ONE_TO_ONE_TAG] : [EVENT_TAG];
+    if (PREF_TAGS[datePref]) tagNames.push(PREF_TAGS[datePref]);
     if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
         return res.status(400).json({ error: 'A valid email is required' });
     }
